@@ -1,0 +1,136 @@
+.partners {
+  padding: 120px 160px 80px 200px;
+  position: relative;
+}
+
+.content {
+  max-width: 800px;
+  margin-left: auto;
+  position: relative;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(48px, 6.8vw, 89px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.subtext {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 40px;
+}
+
+/* Partner List */
+.partnerList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition-delay: 0.2s;
+}
+
+.partnerItem {
+  padding: 4px 0;
+}
+
+.partnerName {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.partnerScroll {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.partnerItemMuted {
+  padding: 1px 0;
+}
+
+.partnerNameMuted {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+}
+
+/* Arrow decoration (rotating graphic next to partners) */
+.arrowDecoration {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrowGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: rotateArrows 8s linear infinite;
+}
+
+.arrowBar {
+  width: 34px;
+  height: 1px;
+  background: var(--color-text);
+  transform-origin: center;
+}
+
+.arrowBar:nth-child(1) { transform: rotate(-30deg); }
+.arrowBar:nth-child(2) { transform: rotate(-15deg); }
+.arrowBar:nth-child(3) { transform: rotate(0deg); }
+.arrowBar:nth-child(4) { transform: rotate(15deg); }
+.arrowBar:nth-child(5) { transform: rotate(30deg); }
+
+@keyframes rotateArrows {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .partners {
+    padding: 80px 40px 80px 100px;
+  }
+
+  .arrowDecoration {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .partners {
+    padding: 60px 24px;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+}
