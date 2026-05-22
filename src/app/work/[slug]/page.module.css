@@ -1,0 +1,270 @@
+/* =========================================================================
+   Mobile-First Event Detail Page CSS
+   ========================================================================= */
+
+.main {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+.container {
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.backLink {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-text);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.backLink:hover {
+  opacity: 1;
+}
+
+/* Hero Grid (Mobile: Stacked) */
+.heroGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-grey-100);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.heroImageWrapper:hover .image {
+  transform: scale(1.05);
+}
+
+/* Content Section */
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(48px, 10vw, 89px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.descriptionBlock {
+  max-width: 100%;
+}
+
+.description {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Stats Row (Mobile: horizontal scroll) */
+.statsRow {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.statsRow::-webkit-scrollbar {
+  height: 4px;
+}
+
+.statsRow::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
+.statCard {
+  min-width: 200px;
+  padding: 24px;
+  background-color: var(--color-bg);
+  border: 1px solid #EAEAEA;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Colored accent lines inside stat cards */
+.statCard::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  width: 4px;
+  height: 40px;
+}
+
+.statCard.lime::before {
+  background-color: var(--color-accent);
+}
+
+.statCard.purple::before {
+  background-color: #4A154B; /* Slack/Purple vibe from Figma */
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.statNumber {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.statLabel {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-top: 8px;
+}
+
+/* Gallery (Mobile: Stacked) */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.galleryImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-grey-100);
+}
+
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
+  .main {
+    padding-top: 0;
+  }
+
+  .container {
+    padding: 80px 40px 120px 100px; /* Sidebar padding */
+    gap: 100px;
+  }
+
+  .heroGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .contentSection {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+  }
+
+  .headerInfo {
+    flex: 1;
+  }
+
+  .descriptionBlock {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .statsRow {
+    overflow-x: visible;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .statCard {
+    flex: 1;
+    min-width: 250px;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .container {
+    padding: 120px 80px 160px 200px;
+    max-width: 1440px;
+    margin: 0 auto;
+    gap: 160px;
+  }
+
+  .heroGrid {
+    gap: 40px;
+  }
+
+  .contentSection {
+    gap: 120px;
+  }
+  
+  .statsRow {
+    gap: 40px;
+  }
+  
+  .gallery {
+    gap: 40px;
+  }
+}

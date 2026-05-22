@@ -8,6 +8,7 @@ import styles from "./Navigation.module.css";
 const navLinks = [
   { href: "/", label: "About us" },
   { href: "/work", label: "Our work" },
+  { href: "/team", label: "Our team" },
   { href: "/contact", label: "Contact Us" },
 ];
 
@@ -16,13 +17,23 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Close drawer on route change
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
+    setIsOpen(false);
+  }, [pathname]);
+
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock body scroll when drawer is open (prevents iOS background scroll)
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
 
   return (
     <>

@@ -1,27 +1,32 @@
+/* =========================================================================
+   Mobile-First Stats Section CSS
+   ========================================================================= */
+
 .stats {
-  padding: 80px 160px 120px 200px;
   position: relative;
   overflow: hidden;
+  /* Mobile defaults */
+  padding: 40px 24px 60px;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 800px;
-  margin-left: auto;
+  width: 100%;
 }
 
 .stat {
   display: flex;
-  align-items: baseline;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .statValue {
   font-family: var(--font-primary);
   font-weight: 600;
-  font-size: clamp(36px, 5.3vw, 70px);
+  font-size: clamp(36px, 10vw, 70px);
   line-height: 1.27;
   letter-spacing: -0.08em;
   color: var(--color-text);
@@ -35,54 +40,61 @@
 .statLabel {
   font-family: var(--font-primary);
   font-weight: 600;
-  font-size: clamp(36px, 5.3vw, 70px);
+  font-size: clamp(24px, 6vw, 70px);
   line-height: 1.27;
   letter-spacing: -0.08em;
   color: var(--color-text);
 }
 
-/* Decorative stacked bars */
+/* Decorative stacked bars (hidden on mobile) */
 .decoration {
-  position: absolute;
-  left: 400px;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  opacity: 0.6;
+  display: none;
 }
 
 .decorBar {
   border-radius: 2px;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
   .stats {
     padding: 60px 40px 80px 100px;
   }
 
-  .decoration {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .stats {
-    padding: 40px 24px 60px;
-  }
-
   .content {
-    margin-left: 0;
+    max-width: 600px;
+    margin-left: auto;
   }
 
   .stat {
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 16px;
+  }
+}
+
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .stats {
+    padding: 80px 160px 120px 200px;
   }
 
-  .statLabel {
-    font-size: 20px;
+  .content {
+    max-width: 800px;
+  }
+
+  .decoration {
+    display: flex;
+    position: absolute;
+    left: 400px;
+    bottom: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    opacity: 0.6;
   }
 }

@@ -1,20 +1,23 @@
+/* =========================================================================
+   Mobile-First Footer Section CSS
+   ========================================================================= */
+
 .footer {
-  padding: 80px 160px 60px 200px;
   position: relative;
+  /* Mobile defaults */
+  padding: 40px 24px 32px;
 }
 
 /* Tagline */
 .tagline {
-  margin-bottom: 80px;
-  max-width: 821px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 60px;
+  width: 100%;
 }
 
 .taglineText {
   font-family: var(--font-primary);
   font-weight: 600;
-  font-size: clamp(36px, 5.3vw, 70px);
+  font-size: clamp(32px, 8vw, 70px);
   line-height: 1.27;
   letter-spacing: -0.08em;
   color: var(--color-text);
@@ -23,7 +26,7 @@
 .taglineHighlight {
   font-family: var(--font-primary);
   font-weight: 600;
-  font-size: clamp(36px, 5.3vw, 70px);
+  font-size: clamp(32px, 8vw, 70px);
   line-height: 1.27;
   letter-spacing: -0.08em;
   color: var(--color-bg);
@@ -45,10 +48,9 @@
 /* Grid */
 .grid {
   display: flex;
-  justify-content: space-between;
-  gap: 60px;
-  max-width: 900px;
-  margin-left: auto;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
 }
 
 /* Links Column */
@@ -89,7 +91,7 @@
 .contactCol {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 24px;
 }
 
@@ -114,7 +116,7 @@
 .contact {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 4px;
 }
 
@@ -150,7 +152,8 @@
   display: flex;
   justify-content: space-between;
   margin-top: 60px;
-  padding: 0 20px;
+  padding: 0 10px;
+  overflow: hidden;
 }
 
 .dot {
@@ -178,29 +181,55 @@
   top: 2.5px;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
   .footer {
     padding: 60px 40px 40px 100px;
   }
-}
 
-@media (max-width: 768px) {
-  .footer {
-    padding: 40px 24px 32px;
+  .tagline {
+    margin-bottom: 80px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .grid {
-    flex-direction: column;
-    gap: 40px;
-    margin-left: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 700px;
+    margin-left: auto;
   }
 
   .contactCol {
-    align-items: flex-start;
+    align-items: flex-end;
+  }
+
+  .contact {
+    align-items: flex-end;
   }
 
   .bottomDots {
-    overflow: hidden;
+    padding: 0 20px;
+  }
+}
+
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .footer {
+    padding: 80px 160px 60px 200px;
+  }
+
+  .tagline {
+    max-width: 821px;
+  }
+
+  .grid {
+    max-width: 900px;
   }
 }

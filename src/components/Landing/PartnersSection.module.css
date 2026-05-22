@@ -1,11 +1,15 @@
+/* =========================================================================
+   Mobile-First Partners Section CSS
+   ========================================================================= */
+
 .partners {
-  padding: 120px 160px 80px 200px;
   position: relative;
+  /* Mobile defaults */
+  padding: 60px 24px;
 }
 
 .content {
-  max-width: 800px;
-  margin-left: auto;
+  width: 100%;
   position: relative;
 }
 
@@ -81,56 +85,67 @@
   color: var(--color-muted);
 }
 
-/* Arrow decoration (rotating graphic next to partners) */
+/* Arrow decoration (hidden on mobile) */
 .arrowDecoration {
-  position: absolute;
-  right: -60px;
-  top: 50%;
-  transform: translateY(-50%);
+  display: none;
 }
 
-.arrowGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  animation: rotateArrows 8s linear infinite;
-}
-
-.arrowBar {
-  width: 34px;
-  height: 1px;
-  background: var(--color-text);
-  transform-origin: center;
-}
-
-.arrowBar:nth-child(1) { transform: rotate(-30deg); }
-.arrowBar:nth-child(2) { transform: rotate(-15deg); }
-.arrowBar:nth-child(3) { transform: rotate(0deg); }
-.arrowBar:nth-child(4) { transform: rotate(15deg); }
-.arrowBar:nth-child(5) { transform: rotate(30deg); }
-
-@keyframes rotateArrows {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
   .partners {
     padding: 80px 40px 80px 100px;
   }
 
-  .arrowDecoration {
-    display: none;
+  .content {
+    max-width: 600px;
+    margin-left: auto;
   }
 }
 
-@media (max-width: 768px) {
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
   .partners {
-    padding: 60px 24px;
+    padding: 120px 160px 80px 200px;
   }
 
   .content {
-    margin-left: 0;
+    max-width: 800px;
+  }
+
+  .arrowDecoration {
+    display: block;
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .arrowGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: rotateArrows 8s linear infinite;
+  }
+
+  .arrowBar {
+    width: 34px;
+    height: 1px;
+    background: var(--color-text);
+    transform-origin: center;
+  }
+
+  .arrowBar:nth-child(1) { transform: rotate(-30deg); }
+  .arrowBar:nth-child(2) { transform: rotate(-15deg); }
+  .arrowBar:nth-child(3) { transform: rotate(0deg); }
+  .arrowBar:nth-child(4) { transform: rotate(15deg); }
+  .arrowBar:nth-child(5) { transform: rotate(30deg); }
+
+  @keyframes rotateArrows {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 }

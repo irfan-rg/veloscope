@@ -1,0 +1,241 @@
+/* =========================================================================
+   Mobile-First Team Page CSS
+   ========================================================================= */
+
+.main {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding-top: 100px;
+  padding-bottom: 80px;
+  position: relative;
+}
+
+.container {
+  padding: 40px 24px;
+  position: relative;
+  z-index: 10; /* Above decorative lines */
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(48px, 12vw, 70px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.headerImageWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-grey-100);
+}
+
+.placeholderTexture {
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/texture-bg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Team Grid */
+.teamGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.memberCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.memberInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(32px, 8vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.dash {
+  color: var(--color-accent);
+}
+
+.description {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 24px; /* From Figma style_MYGGT5 equivalent */
+  color: var(--color-text);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Footer Tagline */
+.tagline {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(32px, 8vw, 50px);
+  line-height: 1.1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+  padding-top: 40px;
+}
+
+/* Decorative lines (hidden on mobile) */
+.gridDecorations {
+  display: none;
+}
+
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
+  .main {
+    padding-top: 0;
+  }
+
+  .container {
+    padding: 80px 40px 120px 100px;
+  }
+
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 100px;
+  }
+
+  .headerImageWrapper {
+    width: 400px;
+  }
+
+  .teamGrid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .memberCard {
+    flex: 1;
+    min-width: 300px;
+  }
+}
+
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .container {
+    padding: 120px 80px 160px 200px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .avatar {
+    width: 394px; /* Figma dimensions */
+    height: 394px;
+  }
+
+  .teamGrid {
+    flex-direction: column;
+    align-items: center;
+    gap: 120px;
+  }
+
+  /* Offset every other avatar like in Figma */
+  .memberCard:nth-child(even) {
+    margin-left: 200px;
+  }
+
+  .memberCard:nth-child(odd) {
+    margin-right: 200px;
+  }
+
+  .tagline {
+    text-align: center;
+  }
+
+  /* Decorative Grid Lines */
+  .gridDecorations {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .verticalLine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .cross {
+    position: absolute;
+    left: -3px; /* Center 6px width on 1px line */
+    width: 7px;
+    height: 7px;
+  }
+
+  .cross::before,
+  .cross::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-text);
+  }
+
+  .cross::before {
+    top: 3px;
+    left: 0;
+    width: 7px;
+    height: 1px;
+  }
+
+  .cross::after {
+    top: 0;
+    left: 3px;
+    width: 1px;
+    height: 7px;
+  }
+}

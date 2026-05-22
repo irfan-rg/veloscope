@@ -1,0 +1,250 @@
+/* =========================================================================
+   Mobile-First Contact Page
+   ========================================================================= */
+
+.main {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-top: 80px; /* mobile: space for hamburger */
+}
+
+.container {
+  padding: 48px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out-expo),
+              transform 0.8s var(--ease-out-expo);
+}
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(52px, 14vw, 89px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtext {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+}
+
+/* ── Split layout (stacked on mobile) ── */
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ── Form ── */
+.formSection {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.input,
+.textarea {
+  font-family: var(--font-primary);
+  font-size: 16px; /* 16px prevents iOS auto-zoom */
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-grey-200);
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 0.25s ease;
+  width: 100%;
+  resize: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-grey-300);
+}
+
+.input:focus,
+.textarea:focus {
+  border-bottom-color: var(--color-text);
+}
+
+.submitBtn {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 14px 32px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.submitBtn:hover {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+.submitBtn:active {
+  transform: scale(0.97);
+}
+
+/* ── Info panel ── */
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infoLabel {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.06em;
+  color: var(--color-text);
+}
+
+.divider {
+  width: 100%;
+  max-width: 200px;
+  height: 1px;
+  background: var(--color-text);
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.email:hover {
+  color: var(--color-accent);
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.socialLink {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: var(--color-accent);
+}
+
+.infoText {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* =========================================================================
+   Tablet ≥ 768px
+   ========================================================================= */
+@media (min-width: 768px) {
+  .main {
+    padding-top: 0;
+  }
+
+  .container {
+    padding: 80px 40px 120px 100px;
+    gap: 100px;
+  }
+
+  .split {
+    flex-direction: row;
+    gap: 80px;
+    align-items: flex-start;
+  }
+
+  .formSection {
+    flex: 1.2;
+  }
+
+  .infoSection {
+    flex: 0.8;
+    padding-top: 20px;
+  }
+}
+
+/* =========================================================================
+   Desktop ≥ 1024px
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .container {
+    padding: 120px 80px 160px 200px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .split {
+    gap: 120px;
+  }
+}

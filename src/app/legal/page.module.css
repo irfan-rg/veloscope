@@ -1,0 +1,92 @@
+/* =========================================================================
+   Mobile-First Legal Page CSS
+   ========================================================================= */
+
+.main {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+.container {
+  padding: 40px 24px;
+}
+
+.header {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(48px, 12vw, 89px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtext {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 800px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionTitle {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.text {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
+  .main {
+    padding-top: 0;
+  }
+
+  .container {
+    padding: 80px 40px 120px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .container {
+    padding: 120px 80px 160px 200px;
+  }
+}

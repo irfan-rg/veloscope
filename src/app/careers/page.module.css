@@ -1,0 +1,143 @@
+/* =========================================================================
+   Mobile-First Careers Page CSS
+   ========================================================================= */
+
+.main {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+.container {
+  padding: 40px 24px;
+}
+
+.header {
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(48px, 12vw, 89px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtext {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.rolesList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.roleCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: var(--color-bg);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.roleCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.roleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.roleTitle {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.roleMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metaItem {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.metaDot {
+  color: var(--color-muted);
+  font-size: 10px;
+}
+
+.applyBtn {
+  align-self: flex-start;
+  padding: 12px 24px;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.applyBtn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
+  .main {
+    padding-top: 0;
+  }
+
+  .container {
+    padding: 80px 40px 120px 100px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .roleCard {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .applyBtn {
+    align-self: center;
+  }
+}
+
+/* =========================================================================
+   Desktop Breakpoint
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .container {
+    padding: 120px 80px 160px 200px;
+    max-width: 1200px;
+  }
+}

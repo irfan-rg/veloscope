@@ -1,0 +1,136 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 319 / 452; /* Figma mobile aspect ratio */
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-grey-100);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+/* Hover Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg);
+  border: 1px solid #B1B1B1;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlayContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 0 40px;
+}
+
+.statGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 20px; /* Space for the green dot/bar */
+}
+
+.statGroup::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-text); /* Black dot */
+}
+
+/* Figma design has lime accents */
+.statGroup:nth-child(1)::before { height: 16px; top: 0; background-color: var(--color-text); width: 1px; }
+.statGroup:nth-child(2)::before { height: 8px; top: 4px; background-color: var(--color-text); width: 1px;}
+.statGroup:nth-child(3)::before { height: 4px; top: 8px; background-color: var(--color-text); width: 1px;}
+
+
+.statNumber {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(32px, 8vw, 48px);
+  line-height: 1.04;
+  letter-spacing: -0.08em;
+  color: var(--color-accent); /* Lime green numbers */
+  display: block;
+}
+
+.statLabel {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: clamp(16px, 4vw, 20px);
+  line-height: 1.2;
+  letter-spacing: -0.08em;
+  color: var(--color-text); /* Black text */
+  display: block;
+}
+
+/* Details */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* =========================================================================
+   Tablet Breakpoint
+   ========================================================================= */
+@media (min-width: 768px) {
+  .card {
+    max-width: 359px;
+  }
+}
