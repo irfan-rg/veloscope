@@ -1,7 +1,5 @@
 import React from 'react';
 import styles from './page.module.css';
-import ScrollProgress from '@/components/shared/ScrollProgress';
-import CustomCursor from '@/components/shared/CustomCursor';
 
 const CAREERS = [
   { id: 'photographer', role: 'Event Photographer', location: 'Remote / On-site', type: 'Contract' },
@@ -12,9 +10,6 @@ const CAREERS = [
 export default function CareersPage() {
   return (
     <main className={styles.main}>
-      <ScrollProgress />
-      <CustomCursor />
-      
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.heading}>Careers</h1>

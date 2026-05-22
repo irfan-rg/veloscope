@@ -4,17 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./StatsSection.module.css";
 
 interface StatItem {
-  value: string;
   numericEnd: number;
   suffix: string;
   label: string;
-  color: "accent" | "default";
+  description: string;
 }
 
 const stats: StatItem[] = [
-  { value: "200mil+", numericEnd: 200, suffix: "mil+", label: "Photos", color: "accent" },
-  { value: "3,000+", numericEnd: 3000, suffix: "+", label: "graphers", color: "default" },
-  { value: "2,300+", numericEnd: 2300, suffix: "+", label: "Events", color: "accent" },
+  { numericEnd: 200, suffix: "M+", label: "Photos", description: "Shot across events" },
+  { numericEnd: 3000, suffix: "+", label: "Photographers", description: "In our network" },
+  { numericEnd: 2300, suffix: "+", label: "Events", description: "Covered across India" },
 ];
 
 function useCountUp(end: number, duration: number, start: boolean): number {
@@ -22,18 +21,15 @@ function useCountUp(end: number, duration: number, start: boolean): number {
 
   useEffect(() => {
     if (!start) return;
-
     let startTime: number;
     let animationFrame: number;
 
     const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * end));
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(step);
-      }
+      if (progress < 1) animationFrame = requestAnimationFrame(step);
     };
 
     animationFrame = requestAnimationFrame(step);
@@ -43,24 +39,23 @@ function useCountUp(end: number, duration: number, start: boolean): number {
   return count;
 }
 
-function StatCounter({ stat, inView }: { stat: StatItem; inView: boolean }) {
+function StatCard({ stat, inView, index }: { stat: StatItem; inView: boolean; index: number }) {
   const count = useCountUp(stat.numericEnd, 2000, inView);
 
   const formatCount = (n: number): string => {
-    if (stat.suffix === "mil+") return `${n}mil+`;
+    if (stat.suffix === "M+") return `${n}M+`;
     return `${n.toLocaleString()}+`;
   };
 
   return (
-    <div className={styles.stat}>
-      <span
-        className={`${styles.statValue} ${
-          stat.color === "accent" ? styles.accent : ""
-        }`}
-      >
+    <div className={styles.statCard} style={{ transitionDelay: `${index * 0.12}s` }}>
+      <div className={styles.statNumber}>
         {inView ? formatCount(count) : "0"}
-      </span>
-      <span className={styles.statLabel}>{stat.label}</span>
+      </div>
+      <div className={styles.statInfo}>
+        <span className={styles.statLabel}>{stat.label}</span>
+        <span className={styles.statDesc}>{stat.description}</span>
+      </div>
     </div>
   );
 }
@@ -77,7 +72,7 @@ export default function StatsSection() {
           observer.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -85,20 +80,20 @@ export default function StatsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.stats}>
-      <div className={styles.content}>
-        {stats.map((stat, i) => (
-          <StatCounter key={i} stat={stat} inView={inView} />
-        ))}
-      </div>
+    <section ref={sectionRef} className={`${styles.stats} ${inView ? styles.inView : ""}`}>
+      {/* Accent stripe */}
+      <div className={styles.accentStripe} />
 
-      {/* Decorative shapes (stacked grey rectangles from Figma) */}
-      <div className={styles.decoration}>
-        <div className={styles.decorBar} style={{ background: "#ECECEC", width: 190, height: 135 }} />
-        <div className={styles.decorBar} style={{ background: "#9F9F9F", width: 221, height: 120 }} />
-        <div className={styles.decorBar} style={{ background: "#C2C2C2", width: 165, height: 141 }} />
-        <div className={styles.decorBar} style={{ background: "#959595", width: 260, height: 82 }} />
-        <div className={styles.decorBar} style={{ background: "#686868", width: 284, height: 25 }} />
+      <div className={styles.inner}>
+        <div className={styles.sectionLabel}>
+          <span>/ By the numbers</span>
+        </div>
+
+        <div className={styles.grid}>
+          {stats.map((stat, i) => (
+            <StatCard key={i} stat={stat} inView={inView} index={i} />
+          ))}
+        </div>
       </div>
     </section>
   );

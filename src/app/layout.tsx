@@ -37,6 +37,10 @@ export const metadata: Metadata = {
   },
 };
 
+import Navigation from "@/components/Navigation/Navigation";
+import ScrollProgress from "@/components/shared/ScrollProgress";
+import CustomCursor from "@/components/shared/CustomCursor";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,7 +48,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${ibmPlexMono.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <CustomCursor />
+        <ScrollProgress />
+        <Navigation />
+        {children}
+      </body>
     </html>
   );
 }

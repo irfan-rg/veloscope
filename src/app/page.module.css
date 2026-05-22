@@ -1,0 +1,61 @@
+.mainWrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Decorative Grid Lines */
+.gridDecorations {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .gridDecorations {
+    display: block;
+    position: fixed; /* Fixed to viewport */
+    inset: 0;
+    pointer-events: none;
+    z-index: 0; /* Behind everything */
+  }
+
+  .verticalLine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .cross {
+    position: absolute;
+    left: -3px; /* Center 7px width on 1px line */
+    width: 7px;
+    height: 7px;
+  }
+
+  .cross::before,
+  .cross::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-grey-300); /* subtle cross */
+  }
+
+  .cross::before {
+    top: 3px;
+    left: 0;
+    width: 7px;
+    height: 1px;
+  }
+
+  .cross::after {
+    top: 0;
+    left: 3px;
+    width: 1px;
+    height: 7px;
+  }
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 1; /* Above the grid */
+}

@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './page.module.css';
 import EventCard from '@/components/Work/EventCard';
-import ScrollProgress from '@/components/shared/ScrollProgress';
-import CustomCursor from '@/components/shared/CustomCursor';
 
 // Dummy data based on Figma text nodes
 const EVENTS = [
@@ -39,9 +37,6 @@ const EVENTS = [
 export default function WorkPage() {
   return (
     <main className={styles.main}>
-      <ScrollProgress />
-      <CustomCursor />
-      
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.heading}>Our work</h1>

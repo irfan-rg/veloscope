@@ -2,24 +2,20 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./PartnersSection.module.css";
+import { SiRedbull, SiNike, SiPuma, SiAdidas, SiGarmin, SiStrava } from "react-icons/si";
 
 const partners = [
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
-  "Maha Marathon",
+  SiRedbull,
+  SiNike,
+  SiPuma,
+  SiAdidas,
+  SiGarmin,
+  SiStrava,
 ];
 
 export default function PartnersSection() {
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const listRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,7 +29,7 @@ export default function PartnersSection() {
       { threshold: 0.2 }
     );
 
-    [headingRef.current, listRef.current].forEach((el) => {
+    [headingRef.current, marqueeRef.current].forEach((el) => {
       if (el) observer.observe(el);
     });
 
@@ -51,35 +47,33 @@ export default function PartnersSection() {
         </h2>
 
         <div className={styles.subtext}>We got&apos;em all</div>
+      </div>
 
-        <div
-          ref={listRef}
-          className={`${styles.partnerList} ${styles.reveal}`}
-        >
-          {/* Active partner */}
-          <div className={styles.partnerItem}>
-            <span className={styles.partnerName}>Maha Marathon</span>
-          </div>
-
-          {/* Greyed out partners in a marquee-style list */}
-          <div className={styles.partnerScroll}>
-            {partners.map((name, i) => (
-              <div key={i} className={styles.partnerItemMuted}>
-                <span className={styles.partnerNameMuted}>{name}</span>
+      {/* Horizontal Continuous Marquee */}
+      <div
+        ref={marqueeRef}
+        className={`${styles.marqueeContainer} ${styles.reveal}`}
+      >
+        <div className={styles.marqueeTrack}>
+          {/* Double the list to create a seamless loop */}
+          {[...partners, ...partners].map((Logo, i) => (
+            <div key={i} className={styles.partnerItem}>
+              <div className={styles.partnerLogo}>
+                <Logo size={50} />
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Rotating arrows decoration */}
-        <div className={styles.arrowDecoration}>
-          <div className={styles.arrowGroup}>
-            <div className={styles.arrowBar} />
-            <div className={styles.arrowBar} />
-            <div className={styles.arrowBar} />
-            <div className={styles.arrowBar} />
-            <div className={styles.arrowBar} />
-          </div>
+      {/* Rotating arrows decoration */}
+      <div className={styles.arrowDecoration}>
+        <div className={styles.arrowGroup}>
+          <div className={styles.arrowBar} />
+          <div className={styles.arrowBar} />
+          <div className={styles.arrowBar} />
+          <div className={styles.arrowBar} />
+          <div className={styles.arrowBar} />
         </div>
       </div>
     </section>

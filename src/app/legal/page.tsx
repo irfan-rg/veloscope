@@ -1,14 +1,9 @@
 import React from 'react';
 import styles from './page.module.css';
-import ScrollProgress from '@/components/shared/ScrollProgress';
-import CustomCursor from '@/components/shared/CustomCursor';
 
 export default function LegalPage() {
   return (
     <main className={styles.main}>
-      <ScrollProgress />
-      <CustomCursor />
-      
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.heading}>Legal</h1>

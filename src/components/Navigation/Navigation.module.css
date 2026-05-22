@@ -2,46 +2,92 @@
    Mobile-First Navigation CSS
    ========================================================================= */
 
-/* ── Hamburger button (always visible on mobile) ── */
-.hamburger {
+/* ── Mobile top bar (logo + hamburger) ── */
+.mobileBar {
   display: flex;
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 300;
-  width: 36px;
-  height: 28px;
-  flex-direction: column;
+  padding: 16px 20px;
+  align-items: center;
   justify-content: space-between;
+  /* Subtle top shadow only — icons readable, no visible bar */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%);
+  transition: background 0.4s ease, padding 0.4s ease;
+}
+
+/* Scrolled: solid dark bar */
+.mobileBar.scrolled {
+  background: rgba(10, 10, 10, 0.92);
+  padding: 10px 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.mobileLogoLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.mobileLogoImg {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  /* Logo already has transparent bg, keep it crisp */
+  filter: brightness(0) invert(1); /* Make it white on dark hero */
+}
+
+.mobileLogoText {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+}
+
+/* ── Hamburger ── (inline in the bar, not fixed on its own) */
+.hamburger {
+  display: flex;
+  position: relative;
+  top: auto;
+  right: auto;
+  z-index: auto;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  padding: 4px 0;
   background: none;
   border: none;
-  -webkit-tap-highlight-color: transparent; /* remove iOS tap flash */
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
 }
 
-.hamburgerLine {
+/* Aperture shutter icon */
+.shutterIcon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.5s var(--ease-out-expo), color 0.3s ease;
+  color: #FFFFFF;
   display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--color-text);
-  border-radius: 2px;
-  transition: transform 0.4s var(--ease-out-expo),
-              opacity 0.4s var(--ease-out-expo);
-  transform-origin: center;
 }
 
-/* X state */
-.hamburger.open .hamburgerLine:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
+.hamburger:hover .shutterIcon {
+  color: var(--color-accent);
+  transform: rotate(45deg);
 }
-.hamburger.open .hamburgerLine:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
+
+.hamburger.open .shutterIcon {
+  transform: rotate(180deg);
+  color: var(--color-accent);
 }
-.hamburger.open .hamburgerLine:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
+
+
 
 /* ── Backdrop overlay ── */
 .mobileOverlay {
@@ -264,6 +310,7 @@
    Desktop Breakpoint ≥ 1024px
    ========================================================================= */
 @media (min-width: 1024px) {
+  .mobileBar,
   .hamburger,
   .mobileOverlay,
   .mobileNav {

@@ -2,119 +2,72 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./HeroSection.module.css";
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const photo1Ref = useRef<HTMLDivElement>(null);
-  const photo2Ref = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Staggered entrance animations
-    const elements = [
-      { el: logoRef.current, delay: 0 },
-      { el: titleRef.current, delay: 200 },
-      { el: subtitleRef.current, delay: 400 },
-      { el: photo1Ref.current, delay: 300 },
-      { el: photo2Ref.current, delay: 500 },
-    ];
+    const delay = (ms: number) =>
+      new Promise((res) => setTimeout(res, ms));
 
-    elements.forEach(({ el, delay }) => {
-      if (!el) return;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(30px)";
-      setTimeout(() => {
-        el.style.transition =
-          "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-      }, delay + 200);
-    });
-
-    // Parallax on scroll
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      if (photo1Ref.current) {
-        photo1Ref.current.style.transform = `translateY(${scrollY * 0.08}px)`;
+    (async () => {
+      await delay(150);
+      if (headlineRef.current) {
+        headlineRef.current.style.opacity = "1";
+        headlineRef.current.style.transform = "translateY(0)";
       }
-      if (photo2Ref.current) {
-        photo2Ref.current.style.transform = `translateY(${scrollY * 0.12}px)`;
+      await delay(250);
+      if (ctaRef.current) {
+        ctaRef.current.style.opacity = "1";
+        ctaRef.current.style.transform = "translateY(0)";
       }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    })();
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.hero} id="hero">
-      {/* Veloscope Logo */}
-      <div ref={logoRef} className={styles.logoContainer}>
-        <Image
-          src="/images/veloscope-logo.png"
-          alt="Veloscope aperture logo"
-          width={103}
-          height={103}
-          className={styles.logo}
-          priority
-        />
-      </div>
+    <section className={styles.hero} id="hero">
+      {/* Full-bleed background */}
+      <Image
+        src="/images/hero-cyclist.png"
+        alt="Veloscope sports photography"
+        fill
+        sizes="100vw"
+        className={styles.bgImage}
+        priority
+      />
 
-      {/* Title */}
-      <h1 ref={titleRef} className={styles.title}>
-        Veloscope
-      </h1>
+      {/* Bottom-heavy gradient — clear sky, dark ground */}
+      <div className={styles.overlay} />
 
-      {/* Subtitle */}
-      <p ref={subtitleRef} className={styles.subtitle}>
-        More than just sports
-      </p>
+      {/* All content at the bottom */}
+      <div className={styles.content}>
 
-      {/* Photo 1 - Left skewed */}
-      <div ref={photo1Ref} className={styles.photoLeft}>
-        <div className={styles.photoInner}>
-          <Image
-            src="/images/hero-cyclist.png"
-            alt="Cyclist in endurance race captured by Veloscope"
-            fill
-            sizes="(max-width: 768px) 60vw, 458px"
-            className={styles.photoImage}
-            priority
-          />
+        {/* Tag line */}
+        <p className={styles.tag}>
+          <span className={styles.tagDot} />
+          sports photography
+        </p>
+
+        {/* Headline — two distinct weights */}
+        <div ref={headlineRef} className={styles.headline}>
+          <p className={styles.headlineLight}>more than</p>
+          <p className={styles.headlineBold}>just sports.</p>
         </div>
-      </div>
 
-      {/* Photo 2 - Right */}
-      <div ref={photo2Ref} className={styles.photoRight}>
-        <div className={styles.photoInner}>
-          <Image
-            src="/images/hero-runner.png"
-            alt="Trail runner in motion captured by Veloscope"
-            fill
-            sizes="(max-width: 768px) 50vw, 319px"
-            className={styles.photoImage}
-            priority
-          />
+        {/* CTA */}
+        <div ref={ctaRef} className={styles.ctaWrap}>
+          <Link href="/work" className={styles.cta}>
+            explore our work
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
+          <span className={styles.ctaMeta}>2,300+ events · 200M+ photos</span>
         </div>
-      </div>
 
-      {/* Scroll Indicator */}
-      <div className={styles.scrollIndicator}>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--color-accent)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 5v14M19 12l-7 7-7-7" />
-        </svg>
       </div>
     </section>
   );

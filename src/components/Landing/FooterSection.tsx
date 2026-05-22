@@ -3,8 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import styles from "./FooterSection.module.css";
+import { SiFacebook, SiInstagram, SiX } from "react-icons/si";
 
-const cyclingWords = ["Events", "Races", "Stories", "Memories", "Moments"];
+const cyclingWords = ["events", "races", "stories", "memories", "moments"];
 
 export default function FooterSection() {
   const [wordIndex, setWordIndex] = useState(0);
@@ -15,119 +16,88 @@ export default function FooterSection() {
   // Typewriter effect
   useEffect(() => {
     const currentWord = cyclingWords[wordIndex];
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing forward
+        if (displayText !== currentWord) {
           setDisplayText(currentWord.slice(0, displayText.length + 1));
-          if (displayText.length === currentWord.length) {
-            setTimeout(() => setIsDeleting(true), 1500);
-          }
         } else {
-          setDisplayText(currentWord.slice(0, displayText.length - 1));
-          if (displayText.length === 0) {
-            setIsDeleting(false);
-            setWordIndex((prev) => (prev + 1) % cyclingWords.length);
-          }
+          // Pause at the end of the word
+          setTimeout(() => setIsDeleting(true), 1500);
         }
-      },
-      isDeleting ? 60 : 120
-    );
+      } else {
+        // Deleting backward
+        if (displayText !== "") {
+          setDisplayText(currentWord.slice(0, displayText.length - 1));
+        } else {
+          // Move to next word
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % cyclingWords.length);
+        }
+      }
+    }, isDeleting ? 60 : 120);
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, wordIndex]);
 
   return (
     <footer ref={sectionRef} className={styles.footer} id="contact">
-      {/* Main tagline */}
-      <div className={styles.tagline}>
-        <span className={styles.taglineText}>You make </span>
-        <span className={styles.taglineHighlight}>
-          {displayText}
-          <span className={styles.cursor}>|</span>
-        </span>
-        <span className={styles.taglineText}> , We make them memorable.</span>
-      </div>
-
-      {/* Footer grid */}
-      <div className={styles.grid}>
-        {/* Left: Links */}
-        <div className={styles.linksCol}>
-          <Link href="/team" className={styles.link}>
-            Our team
-          </Link>
-          <Link href="/careers" className={styles.link}>
-            Career
-          </Link>
-          <Link href="/legal" className={styles.link}>
-            Terms & Conditions
-          </Link>
-          <Link href="/legal" className={styles.link}>
-            Privacy Policy
-          </Link>
+      <div className={styles.footerContent}>
+        {/* Tagline */}
+        <div className={styles.taglineBox}>
+          <div className={styles.taglineRow}>
+            <span className={styles.taglineText}>you make </span>
+            <span className={styles.taglineHighlightWrapper}>
+              <span className={styles.taglineHighlight}>
+                {displayText}
+                <span className={styles.cursor}>|</span>
+              </span>
+            </span>
+          </div>
+          <span className={styles.taglineText}>we make them memorable.</span>
         </div>
 
-        {/* Right: Contact + Social */}
-        <div className={styles.contactCol}>
-          <div className={styles.socialIcons}>
-            {/* Facebook */}
-            <a
-              href="https://facebook.com/veloscope"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="Facebook"
-            >
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg>
-            </a>
-            {/* Instagram */}
-            <a
-              href="https://instagram.com/veloscope.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="Instagram"
-            >
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <circle cx="12" cy="12" r="5" />
-                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
-              </svg>
-            </a>
-            {/* X (Twitter) */}
-            <a
-              href="https://x.com/veloscope"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-              aria-label="X (Twitter)"
-            >
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-              </svg>
-            </a>
+        {/* Info Grid */}
+        <div className={styles.infoGrid}>
+          {/* Explore + Legal side by side */}
+          <div className={styles.linksRow}>
+            <div className={styles.infoColumn}>
+              <h3 className={styles.columnTitle}>Explore</h3>
+              <Link href="/team" className={styles.link}>Our team</Link>
+              <Link href="/careers" className={styles.link}>Career</Link>
+            </div>
+            
+            <div className={styles.infoColumn}>
+              <h3 className={styles.columnTitle}>Legal</h3>
+              <Link href="/legal" className={styles.link}>Terms & Conditions</Link>
+              <Link href="/legal" className={styles.link}>Privacy Policy</Link>
+            </div>
           </div>
 
-          <div className={styles.contact}>
-            <span className={styles.mailLabel}>Mail us @</span>
-            <div className={styles.divider} />
-            <a
-              href="mailto:veloscope@gmail.com"
-              className={styles.email}
-            >
+          <div className={styles.infoColumn}>
+            <h3 className={styles.columnTitle}>Connect</h3>
+            <div className={styles.socialIcons}>
+              <a href="https://facebook.com/veloscope" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook"><SiFacebook /></a>
+              <a href="https://instagram.com/veloscope.in" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram"><SiInstagram /></a>
+              <a href="https://x.com/veloscope" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="X"><SiX /></a>
+            </div>
+            <a href="mailto:veloscope@gmail.com" className={styles.email}>
               veloscope@gmail.com
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Bottom decorative dots */}
-      <div className={styles.bottomDots}>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className={styles.dot} />
-        ))}
+        {/* Massive outlined wordmark */}
+        <div className={styles.massiveTextWrapper}>
+          <h2 className={styles.massiveText} aria-hidden="true">VELOSCOPE</h2>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className={styles.bottomBar}>
+          <span>© {new Date().getFullYear()} Veloscope. All rights reserved.</span>
+          <span>Endurance Sports Photography</span>
+        </div>
       </div>
     </footer>
   );

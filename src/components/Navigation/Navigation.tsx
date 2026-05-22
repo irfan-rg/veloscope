@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Navigation.module.css";
@@ -91,17 +92,45 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile Hamburger */}
-      <button
-        className={`${styles.hamburger} ${isOpen ? styles.open : ""}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle navigation menu"
-        aria-expanded={isOpen}
-      >
-        <span className={styles.hamburgerLine} />
-        <span className={styles.hamburgerLine} />
-        <span className={styles.hamburgerLine} />
-      </button>
+      {/* Mobile top bar — transparent on hero, dark on scroll */}
+      <div className={`${styles.mobileBar} ${scrolled ? styles.scrolled : ""}`}>
+        <Link href="/" className={styles.mobileLogoLink} aria-label="Veloscope home">
+          <Image
+            src="/images/veloscope-logo.png"
+            alt="Veloscope"
+            width={32}
+            height={32}
+            className={styles.mobileLogoImg}
+            priority
+          />
+          <span className={styles.mobileLogoText}>Veloscope</span>
+        </Link>
+
+        <button
+          className={`${styles.hamburger} ${isOpen ? styles.open : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isOpen}
+        >
+          <svg
+            className={styles.shutterIcon}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <line x1="12" y1="2" x2="12" y2="8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="12" y1="15.5" x2="12" y2="22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="2" y1="12" x2="8.5" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="15.5" y1="12" x2="22" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="4.93" y1="4.93" x2="9.52" y2="9.52" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="14.48" y1="14.48" x2="19.07" y2="19.07" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="19.07" y1="4.93" x2="14.48" y2="9.52" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="9.52" y1="14.48" x2="4.93" y2="19.07" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
 
       {/* Mobile Overlay */}
       <div

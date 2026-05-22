@@ -2,8 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-import ScrollProgress from '@/components/shared/ScrollProgress';
-import CustomCursor from '@/components/shared/CustomCursor';
 
 // Dummy content generator based on slug
 const getEventDetails = (slug: string) => {
@@ -36,9 +34,6 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
 
   return (
     <main className={styles.main}>
-      <ScrollProgress />
-      <CustomCursor />
-      
       <div className={styles.container}>
         <Link href="/work" className={styles.backLink}>
           ← Back to work
