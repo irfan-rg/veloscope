@@ -7,10 +7,10 @@ import { usePathname } from "next/navigation";
 import styles from "./Navigation.module.css";
 
 const navLinks = [
-  { href: "/", label: "About us" },
-  { href: "/work", label: "Our work" },
-  { href: "/team", label: "Our team" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/", label: "About us", num: "01" },
+  { href: "/work", label: "Our work", num: "02" },
+  { href: "/team", label: "Our team", num: "03" },
+  { href: "/contact", label: "Contact Us", num: "04" },
 ];
 
 export default function Navigation() {
@@ -139,24 +139,41 @@ export default function Navigation() {
       />
       <div className={`${styles.mobileNav} ${isOpen ? styles.open : ""}`}>
         <div className={styles.mobileNavInner}>
-          {navLinks.map((link) => {
-            const isActive =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.mobileLink} ${
-                  isActive ? styles.active : ""
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+
+          {/* Big numbered links */}
+          <nav className={styles.mobileLinks}>
+            {navLinks.map((link, i) => {
+              const isActive =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${styles.mobileLink} ${isActive ? styles.active : ""}`}
+                  onClick={() => setIsOpen(false)}
+                  style={{ transitionDelay: isOpen ? `${i * 60}ms` : "0ms" }}
+                >
+                  <span className={styles.mobileLinkNum}>{link.num}</span>
+                  <span className={styles.mobileLinkLabel}>{link.label}</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Footer strip inside drawer */}
+          <div className={styles.mobileNavFooter}>
+            <a href="mailto:veloscope@gmail.com" className={styles.mobileNavEmail}>
+              veloscope@gmail.com
+            </a>
+            <div className={styles.mobileNavSocials}>
+              <a href="https://instagram.com/veloscope.in" target="_blank" rel="noopener noreferrer" className={styles.mobileSocialLink}>IG</a>
+              <a href="https://x.com/veloscope" target="_blank" rel="noopener noreferrer" className={styles.mobileSocialLink}>X</a>
+              <a href="https://facebook.com/veloscope" target="_blank" rel="noopener noreferrer" className={styles.mobileSocialLink}>FB</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </>

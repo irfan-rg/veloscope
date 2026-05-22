@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./HeroSection.module.css";
 
@@ -24,14 +23,14 @@ export default function HeroSection() {
 
   return (
     <section className={styles.hero} id="hero">
-      {/* Full-bleed photo */}
-      <Image
-        src="/images/hero-cyclist.png"
-        alt="Veloscope sports photography"
-        fill
-        sizes="100vw"
-        className={styles.bgImage}
-        priority
+      {/* Full-bleed video background */}
+      <video
+        className={styles.bgVideo}
+        src="/videos/hero-vid.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
       />
 
       {/* Dark vignette overlay */}

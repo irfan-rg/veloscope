@@ -108,22 +108,20 @@
   pointer-events: auto;
 }
 
-/* ── Slide-in drawer ── */
+/* ── Slide-in drawer — full screen, dark ── */
 .mobileNav {
   display: block;
   position: fixed;
   top: 0;
   right: 0;
-  width: min(320px, 85vw); /* Never wider than 85% on small phones */
-  height: 100dvh; /* dvh accounts for iOS address bar */
-  background: var(--color-bg);
+  width: 100%;
+  height: 100dvh;
+  background: #111111;
   z-index: 275;
   transform: translateX(105%);
-  transition: transform 0.5s var(--ease-out-expo);
-  border-left: 1px solid var(--color-grey-100);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .mobileNav.open {
@@ -133,44 +131,118 @@
 .mobileNavInner {
   display: flex;
   flex-direction: column;
-  padding: 88px 40px 60px;
-  gap: 40px;
+  justify-content: space-between;
+  padding: 100px 32px 48px;
   min-height: 100%;
 }
 
-/* ── Mobile nav links ── */
+/* ── Links group ── */
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .mobileLink {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
   font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: 28px;
+  font-weight: 700;
+  font-size: clamp(36px, 10vw, 52px);
   letter-spacing: -0.04em;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  position: relative;
-  width: fit-content;
-  transition: color 0.2s ease;
-  padding: 4px 0;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: color 0.2s ease,
+              opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   -webkit-tap-highlight-color: transparent;
+  /* Stagger: starts hidden, slides up when open */
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.mobileLink::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transition: width 0.3s var(--ease-out-expo);
+.mobileNav.open .mobileLink {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.mobileLink.active::before,
-.mobileLink:active::before {
-  width: 100%;
+.mobileLink:hover {
+  color: #ffffff;
 }
 
 .mobileLink.active {
-  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.mobileLinkNum {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transform: translateY(-2px); /* optical alignment with baseline */
+}
+
+.mobileLink.active .mobileLinkNum {
+  color: var(--color-accent);
+}
+
+.mobileLinkLabel {
+  flex: 1;
+}
+
+/* ── Footer strip ── */
+.mobileNavFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+.mobileNav.open .mobileNavFooter {
+  opacity: 1;
+}
+
+.mobileNavEmail {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.mobileNavEmail:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mobileNavSocials {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobileSocialLink {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mobileSocialLink:hover {
+  color: var(--color-accent);
 }
 
 /* ── Desktop Sidebar (hidden on mobile) ── */
