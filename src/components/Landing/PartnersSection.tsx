@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./PartnersSection.module.css";
-import { SiRedbull, SiNike, SiPuma, SiAdidas, SiGarmin, SiStrava } from "react-icons/si";
+import { SiRedbull, SiNike, SiPuma, SiAdidas, SiGarmin, SiStrava, SiUnderarmour, SiThenorthface, SiSony, SiNikon, SiNewbalance } from "react-icons/si";
 
 const partners = [
   SiRedbull,
@@ -11,6 +11,11 @@ const partners = [
   SiAdidas,
   SiGarmin,
   SiStrava,
+  SiUnderarmour,
+  SiThenorthface,
+  SiSony,
+  SiNikon,
+  SiNewbalance,
 ];
 
 export default function PartnersSection() {

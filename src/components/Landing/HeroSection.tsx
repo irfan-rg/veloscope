@@ -6,30 +6,25 @@ import Link from "next/link";
 import styles from "./HeroSection.module.css";
 
 export default function HeroSection() {
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const viewfinderRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const delay = (ms: number) =>
-      new Promise((res) => setTimeout(res, ms));
-
-    (async () => {
-      await delay(150);
-      if (headlineRef.current) {
-        headlineRef.current.style.opacity = "1";
-        headlineRef.current.style.transform = "translateY(0)";
+    setTimeout(() => {
+      if (viewfinderRef.current) {
+        viewfinderRef.current.style.opacity = "1";
       }
-      await delay(250);
-      if (ctaRef.current) {
-        ctaRef.current.style.opacity = "1";
-        ctaRef.current.style.transform = "translateY(0)";
+    }, 100);
+    setTimeout(() => {
+      if (textRef.current) {
+        textRef.current.style.opacity = "1";
       }
-    })();
+    }, 400);
   }, []);
 
   return (
     <section className={styles.hero} id="hero">
-      {/* Full-bleed background */}
+      {/* Full-bleed photo */}
       <Image
         src="/images/hero-cyclist.png"
         alt="Veloscope sports photography"
@@ -39,33 +34,50 @@ export default function HeroSection() {
         priority
       />
 
-      {/* Bottom-heavy gradient — clear sky, dark ground */}
+      {/* Dark vignette overlay */}
       <div className={styles.overlay} />
 
-      {/* All content at the bottom */}
-      <div className={styles.content}>
+      {/* ─── Viewfinder UI ─── */}
+      <div ref={viewfinderRef} className={styles.viewfinder}>
 
-        {/* Tag line */}
-        <p className={styles.tag}>
-          <span className={styles.tagDot} />
-          sports photography
-        </p>
+        {/* Corner brackets */}
+        <span className={`${styles.corner} ${styles.cornerTL}`} />
+        <span className={`${styles.corner} ${styles.cornerTR}`} />
+        <span className={`${styles.corner} ${styles.cornerBL}`} />
+        <span className={`${styles.corner} ${styles.cornerBR}`} />
 
-        {/* Headline — two distinct weights */}
-        <div ref={headlineRef} className={styles.headline}>
-          <p className={styles.headlineLight}>more than</p>
-          <p className={styles.headlineBold}>just sports.</p>
+        {/* Top-left: Brand tag */}
+        <div className={styles.topLeft}>
+          <span className={styles.mono}>VELOSCOPE</span>
+          <span className={styles.monoMuted}>® SPORTS MEDIA</span>
         </div>
 
-        {/* CTA */}
-        <div ref={ctaRef} className={styles.ctaWrap}>
-          <Link href="/work" className={styles.cta}>
-            explore our work
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </Link>
-          <span className={styles.ctaMeta}>2,300+ events · 200M+ photos</span>
+        {/* Top-right: Shutter readout */}
+        <div className={styles.topRight}>
+          <span className={styles.monoMuted}>f/1.8</span>
+          <span className={styles.monoMuted}>1/2000s</span>
+          <span className={styles.monoMuted}>ISO 400</span>
+        </div>
+
+        {/* Tagline + CTA — centered in the frame */}
+        <div ref={textRef} className={styles.headlineBlock}>
+          <p className={styles.headlineLight}>more than</p>
+          <p className={styles.headlineBold}>just sports.</p>
+          <div className={styles.ctaWrap}>
+            <Link href="/work" className={styles.cta}>
+              explore our work
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+
+        {/* Bottom center: Frame count */}
+        <div className={styles.frameCount}>
+          <span className={styles.monoMuted}>▶ REC</span>
+          <span className={styles.monoAccent}>●</span>
+          <span className={styles.monoMuted}>0001 / 2300</span>
         </div>
 
       </div>

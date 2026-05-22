@@ -20,7 +20,7 @@
   --color-avatar-bg: rgba(0, 0, 0, 0.1);
 
   /* Typography - from Figma text styles */
-  --font-primary: var(--font-inter);
+  --font-primary: var(--font-space-grotesk);
   --font-mono: var(--font-ibm-plex-mono);
 
   /* Spacing - 8px grid */
