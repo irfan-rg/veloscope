@@ -41,6 +41,7 @@ export default function WorkPage() {
       <div className={styles.container}>
         <header className={styles.header}>
           <h1 className={styles.heading}>our work<span className={styles.accent}>.</span></h1>
+          <p className={styles.subheading}>A curated archive of endurance.</p>
         </header>
 
         {/* Mobile-First Massive Gallery Grid */}

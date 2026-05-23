@@ -1,83 +1,100 @@
 /* =========================================================================
-   Mobile-First Team Page CSS
+   Team Page — Dark Magazine Editorial Layout
    ========================================================================= */
 
 .main {
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  padding-top: 100px;
-  padding-bottom: 80px;
-  position: relative;
+  min-height: 100dvh;
+  background-color: #0A0A0A;
+  padding-top: 120px;
+  color: #FFFFFF;
 }
 
 .container {
-  padding: 40px 24px;
-  position: relative;
-  z-index: 10; /* Above decorative lines */
+  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-/* Header */
+/* ── Header ── */
 .header {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 60px;
+  margin-bottom: 48px;
 }
 
 .heading {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(48px, 12vw, 70px);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(48px, 12vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
   margin: 0;
+  text-transform: lowercase;
 }
 
-.headerImageWrapper {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: var(--color-grey-100);
+.accent {
+  color: var(--color-accent);
 }
 
-.placeholderTexture {
-  width: 100%;
-  height: 100%;
-  background-image: url('/images/texture-bg.png');
-  background-size: cover;
-  background-position: center;
+.subheading {
+  font-family: var(--font-primary);
+  font-size: clamp(16px, 4vw, 20px);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 16px;
+  max-width: 400px;
+  line-height: 1.4;
 }
 
-/* Team Grid */
-.teamGrid {
+/* ── Editorial Grid (Staggered Layout) ── */
+.editorialGrid {
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  margin-bottom: 80px;
+  gap: 80px; /* Space between members on mobile */
+  margin-bottom: 120px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 48px;
 }
 
-.memberCard {
+.memberBlock {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 24px;
-  text-align: center;
+  width: 100%;
 }
 
-.avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.05);
+/* Image styling */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Default mobile ratio */
+  background-color: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: border-color 0.4s ease;
 }
 
-.memberInfo {
+.memberBlock:hover .imageWrapper {
+  border-color: rgba(202, 248, 63, 0.3);
+}
+
+/* Avatar SVG Placeholder */
+.avatarSvg {
+  width: clamp(80px, 15vw, 160px);
+  height: clamp(80px, 15vw, 160px);
+  color: var(--color-accent);
+  opacity: 0.8;
+  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.memberBlock:hover .avatarSvg {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Typography for blocks */
+.info {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -85,157 +102,111 @@
 
 .name {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(32px, 8vw, 50px);
-  line-height: 1.1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
   margin: 0;
 }
 
-.dash {
+.role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
   color: var(--color-accent);
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .description {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 24px; /* From Figma style_MYGGT5 equivalent */
-  color: var(--color-text);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
-  opacity: 0.8;
+  max-width: 400px;
+  line-height: 1.4;
+  margin-top: 8px;
 }
 
-/* Footer Tagline */
+/* ── Massive Tagline ── */
+.footer {
+  margin-bottom: 80px;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
 .tagline {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(32px, 8vw, 50px);
-  line-height: 1.1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
-  text-align: center;
+  font-weight: 800;
+  font-size: clamp(40px, 10vw, 150px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   margin: 0;
-  padding-top: 40px;
-}
-
-/* Decorative lines (hidden on mobile) */
-.gridDecorations {
-  display: none;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.15);
+  color: transparent;
+  text-transform: uppercase;
 }
 
 /* =========================================================================
-   Tablet Breakpoint
+   Tablet/Desktop (The Asymmetric Layout)
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 0;
+    padding-top: 160px;
   }
-
+  
   .container {
-    padding: 80px 40px 120px 100px;
+    padding: 0 48px;
   }
 
   .header {
-    flex-direction: row;
+    margin-bottom: 80px;
+  }
+
+  .editorialGrid {
+    gap: 160px; /* Massive breathing room */
+  }
+
+  /* Member 1: Massive Landscape (Center) */
+  .memberBlock:nth-child(1) {
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 100px;
+    text-align: center;
+  }
+  .memberBlock:nth-child(1) .imageWrapper {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
+  .memberBlock:nth-child(1) .description {
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .headerImageWrapper {
-    width: 400px;
+  /* Member 2: Portrait (Pushed Right) */
+  .memberBlock:nth-child(2) {
+    align-items: flex-end;
+    text-align: right;
+    align-self: flex-end; /* Push block to right of flex container */
+    width: 60%;
+  }
+  .memberBlock:nth-child(2) .imageWrapper {
+    aspect-ratio: 3 / 4;
   }
 
-  .teamGrid {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
+  /* Member 3: Portrait (Pushed Left) */
+  .memberBlock:nth-child(3) {
+    align-items: flex-start;
+    text-align: left;
+    align-self: flex-start; /* Push block to left */
+    width: 50%;
   }
-
-  .memberCard {
-    flex: 1;
-    min-width: 300px;
+  .memberBlock:nth-child(3) .imageWrapper {
+    aspect-ratio: 4 / 5;
   }
 }
 
-/* =========================================================================
-   Desktop Breakpoint
-   ========================================================================= */
 @media (min-width: 1024px) {
   .container {
-    padding: 120px 80px 160px 200px;
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-
-  .avatar {
-    width: 394px; /* Figma dimensions */
-    height: 394px;
-  }
-
-  .teamGrid {
-    flex-direction: column;
-    align-items: center;
-    gap: 120px;
-  }
-
-  /* Offset every other avatar like in Figma */
-  .memberCard:nth-child(even) {
-    margin-left: 200px;
-  }
-
-  .memberCard:nth-child(odd) {
-    margin-right: 200px;
-  }
-
-  .tagline {
-    text-align: center;
-  }
-
-  /* Decorative Grid Lines */
-  .gridDecorations {
-    display: block;
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .verticalLine {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-
-  .cross {
-    position: absolute;
-    left: -3px; /* Center 6px width on 1px line */
-    width: 7px;
-    height: 7px;
-  }
-
-  .cross::before,
-  .cross::after {
-    content: "";
-    position: absolute;
-    background-color: var(--color-text);
-  }
-
-  .cross::before {
-    top: 3px;
-    left: 0;
-    width: 7px;
-    height: 1px;
-  }
-
-  .cross::after {
-    top: 0;
-    left: 3px;
-    width: 1px;
-    height: 7px;
+    padding: 0 80px;
   }
 }
