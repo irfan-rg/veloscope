@@ -9,28 +9,21 @@ const EVENTS = [
     id: 'chennai-marathon-2020',
     title: 'Skechers Performance Chennai Marathon',
     date: 'Jan 23rd, 2020',
-    image: '/images/event-runners.png',
+    image: '/images/figma/figma_672_2830.png',
     stats: { images: '90,000', runners: '1000', photographers: '60' }
-  },
-  {
-    id: 'chennai-marathon-2019',
-    title: 'Skechers Performance Chennai Marathon',
-    date: 'Sep 11th, 2019',
-    image: '/images/event-bridge.png',
-    stats: { images: '85,000', runners: '850', photographers: '45' }
   },
   {
     id: 'ruggedian-kolhapur',
     title: 'Ruggedian Kolhapur Run',
     date: 'Dec 15th, 2019',
-    image: '/images/event-woman.png',
+    image: '/images/figma/figma_712_2283.png',
     stats: { images: '120,000', runners: '2000', photographers: '80' }
   },
   {
     id: 'yogi-run',
     title: 'Yogi Run',
     date: 'Mar 10th, 2019',
-    image: '/images/portfolio-card.png',
+    image: '/images/figma/figma_712_2280.png',
     stats: { images: '45,000', runners: '500', photographers: '20' }
   }
 ];

@@ -1,270 +1,219 @@
 /* =========================================================================
-   Mobile-First Event Detail Page CSS
+   Event Detail Page — Dark Cinematic Editorial
    ========================================================================= */
 
 .main {
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  padding-top: 100px;
+  min-height: 100dvh;
+  background-color: #0A0A0A;
+  padding-top: 120px;
   padding-bottom: 80px;
+  color: #FFFFFF;
 }
 
 .container {
-  padding: 40px 24px;
+  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 64px;
 }
 
+/* ── Top Bar ── */
 .backLink {
   font-family: var(--font-mono);
   font-size: 14px;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  display: inline-block;
-  margin-bottom: 20px;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  margin-top: 8px;
 }
 
 .backLink:hover {
-  opacity: 1;
+  color: var(--color-accent);
 }
 
-/* Hero Grid (Mobile: Stacked) */
-.heroGrid {
+/* ── Hero Image (Single Full-Bleed) ── */
+.heroWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.heroImage {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroWrapper:hover .heroImage {
+  transform: scale(1.03);
+}
+
+/* ── Header ── */
+.header {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
-}
-
-.heroImageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: var(--color-grey-100);
-}
-
-.image {
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out-expo);
-}
-
-.heroImageWrapper:hover .image {
-  transform: scale(1.05);
-}
-
-/* Content Section */
-.contentSection {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.headerInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 48px;
 }
 
 .title {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(48px, 10vw, 89px);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(36px, 8vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
   margin: 0;
+  text-transform: lowercase;
 }
 
-.date {
+.metaBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.6;
-  letter-spacing: -0.02em;
-  color: var(--color-muted);
-  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  flex-wrap: wrap;
 }
 
-.descriptionBlock {
-  max-width: 100%;
+.metaDot {
+  color: var(--color-accent);
+}
+
+/* ── Content + Stats ── */
+.contentRow {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 .description {
   font-family: var(--font-primary);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--color-text);
+  font-size: clamp(18px, 2.5vw, 22px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
   margin: 0;
+  max-width: 680px;
 }
 
-/* Stats Row (Mobile: horizontal scroll) */
+/* ── Stats ── */
 .statsRow {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  padding-bottom: 16px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.statsRow::-webkit-scrollbar {
-  height: 4px;
-}
-
-.statsRow::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .statCard {
-  min-width: 200px;
-  padding: 24px;
-  background-color: var(--color-bg);
-  border: 1px solid #EAEAEA;
-  border-radius: 10px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  gap: 8px;
+  border-right: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Colored accent lines inside stat cards */
-.statCard::before {
-  content: "";
-  position: absolute;
-  left: 24px;
-  top: 24px;
-  width: 4px;
-  height: 40px;
-}
-
-.statCard.lime::before {
-  background-color: var(--color-accent);
-}
-
-.statCard.purple::before {
-  background-color: #4A154B; /* Slack/Purple vibe from Figma */
-}
-
-.statContent {
-  display: flex;
-  flex-direction: column;
-  padding-left: 20px;
+.statCard:last-child {
+  border-right: none;
 }
 
 .statNumber {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 32px;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
   line-height: 1;
-  color: var(--color-text);
 }
 
 .statLabel {
-  font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--color-muted);
-  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-/* Gallery (Mobile: Stacked) */
+/* ── Gallery ── */
+.galleryLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  margin-bottom: 24px;
+}
+
 .gallery {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
-.galleryImageWrapper {
+.galleryItem {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 10px;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
-  background-color: var(--color-grey-100);
+  background-color: #111;
+}
+
+.galleryImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.05);
 }
 
 /* =========================================================================
-   Tablet Breakpoint
+   Tablet
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 0;
+    padding-top: 160px;
   }
 
   .container {
-    padding: 80px 40px 120px 100px; /* Sidebar padding */
-    gap: 100px;
+    padding: 0 48px;
+    gap: 80px;
   }
 
-  .heroGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .contentSection {
+  .contentRow {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 60px;
-  }
-
-  .headerInfo {
-    flex: 1;
-  }
-
-  .descriptionBlock {
-    flex: 1;
-    max-width: 500px;
-  }
-
-  .statsRow {
-    overflow-x: visible;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .statCard {
-    flex: 1;
-    min-width: 250px;
+    gap: 80px;
   }
 
   .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 }
 
 /* =========================================================================
-   Desktop Breakpoint
+   Desktop
    ========================================================================= */
 @media (min-width: 1024px) {
   .container {
-    padding: 120px 80px 160px 200px;
-    max-width: 1440px;
-    margin: 0 auto;
-    gap: 160px;
+    padding: 0 80px;
+    gap: 100px;
   }
 
-  .heroGrid {
-    gap: 40px;
-  }
-
-  .contentSection {
-    gap: 120px;
-  }
-  
-  .statsRow {
-    gap: 40px;
-  }
-  
   .gallery {
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 }

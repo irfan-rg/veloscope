@@ -1,98 +1,153 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import styles from './page.module.css';
+import FooterCompact from '@/components/Landing/FooterCompact';
 
-// Dummy content generator based on slug
-const getEventDetails = (slug: string) => {
-  // Common dummy data
-  return {
-    title: slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+// ── Per-event data keyed by slug ──
+const EVENTS: Record<string, {
+  title: string;
+  date: string;
+  location: string;
+  description: string;
+  stats: { number: string; label: string }[];
+  hero: string;
+  gallery: string[];
+}> = {
+  'chennai-marathon-2020': {
+    title: 'Skechers Performance Chennai Marathon',
     date: 'Jan 23rd, 2020',
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    location: 'Chennai, India',
+    description: 'One of South India\'s most prestigious road races, pushing thousands of runners through the heart of the city at dawn. We deployed 60 photographers across 14 strategic checkpoints to deliver 90,000 images in under 24 hours.',
     stats: [
-      { number: '90,000', label: 'images', color: 'lime' },
-      { number: '1000', label: 'Runners', color: 'purple' },
-      { number: '60', label: 'Photographers', color: 'lime' }
+      { number: '90,000', label: 'Images delivered' },
+      { number: '1,000', label: 'Runners captured' },
+      { number: '60', label: 'Photographers' }
     ],
-    heroImages: [
-      '/images/event-runners.png',
-      '/images/event-bridge.png',
-      '/images/event-woman.png',
-      '/images/event-group.png'
-    ],
-    galleryImages: [
-      '/images/portfolio-card.png',
-      '/images/hero-cyclist.png',
+    hero: '/images/figma/figma_672_2830.png',
+    gallery: [
+      '/images/figma/figma_712_2280.png',
+      '/images/figma/figma_752_3294.png',
+      '/images/figma/figma_712_2283.png',
+      '/images/figma/figma_712_2285.png',
       '/images/story-photo.png'
     ]
-  };
+  },
+  'ruggedian-kolhapur': {
+    title: 'Ruggedian Kolhapur Run',
+    date: 'Dec 15th, 2019',
+    location: 'Kolhapur, India',
+    description: 'The toughest off-road race in Maharashtra. 2,000 runners against rugged terrain, unforgiving light, and unpredictable weather. 80 photographers. 120,000 frames. Zero compromises.',
+    stats: [
+      { number: '120,000', label: 'Images delivered' },
+      { number: '2,000', label: 'Runners captured' },
+      { number: '80', label: 'Photographers' }
+    ],
+    hero: '/images/figma/figma_712_2283.png',
+    gallery: [
+      '/images/figma/figma_672_2828.png',
+      '/images/figma/figma_672_2830.png',
+      '/images/figma/figma_674_2921.png',
+      '/images/story-photo.png',
+      '/images/figma/figma_712_2280.png',
+    ]
+  },
+  'yogi-run': {
+    title: 'Yogi Run',
+    date: 'Mar 10th, 2019',
+    location: 'Pune, India',
+    description: 'A community-first running event capturing the spirit of everyday athletes. 500 runners, 20 photographers, and a production turnaround of under 8 hours. A lean, high-output operation.',
+    stats: [
+      { number: '45,000', label: 'Images delivered' },
+      { number: '500', label: 'Runners captured' },
+      { number: '20', label: 'Photographers' }
+    ],
+    hero: '/images/figma/figma_712_2280.png',
+    gallery: [
+      '/images/figma/figma_672_2830.png',
+      '/images/figma/figma_752_3294.png',
+      '/images/story-photo.png',
+      '/images/figma/figma_712_2285.png',
+      '/images/event-bridge.png',
+    ]
+  }
 };
 
-export default function EventDetailPage({ params }: { params: { slug: string } }) {
-  const event = getEventDetails(params.slug);
+export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const event = EVENTS[slug];
+
+  if (!event) {
+    notFound();
+  }
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
+
+        {/* ── Back Link ── */}
         <Link href="/work" className={styles.backLink}>
-          ← Back to work
+          ← back to work
         </Link>
 
-        {/* Hero Image Grid */}
-        <section className={styles.heroGrid}>
-          {event.heroImages.map((src, idx) => (
-            <div key={idx} className={styles.heroImageWrapper}>
-              <Image 
-                src={src} 
-                alt={`Hero ${idx + 1}`} 
-                fill 
-                className={styles.image} 
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          ))}
-        </section>
+        {/* ── Hero ── */}
+        <div className={styles.heroWrapper}>
+          <Image
+            src={event.hero}
+            alt={event.title}
+            fill
+            className={styles.heroImage}
+            sizes="100vw"
+            priority
+          />
+        </div>
 
-        {/* Header Content */}
-        <section className={styles.contentSection}>
-          <div className={styles.headerInfo}>
-            <h1 className={styles.title}>{event.title}</h1>
-            <p className={styles.date}>{event.date}</p>
+        {/* ── Header ── */}
+        <header className={styles.header}>
+          <h1 className={styles.title}>{event.title}</h1>
+          <div className={styles.metaBar}>
+            <span>{event.date}</span>
+            <span className={styles.metaDot}>•</span>
+            <span>{event.location}</span>
           </div>
-          
-          <div className={styles.descriptionBlock}>
-            <p className={styles.description}>{event.description}</p>
-          </div>
-        </section>
+        </header>
 
-        {/* Stats Row */}
-        <section className={styles.statsRow}>
-          {event.stats.map((stat, idx) => (
-            <div key={idx} className={`${styles.statCard} ${styles[stat.color]}`}>
-              <div className={styles.statContent}>
+        {/* ── Description + Stats ── */}
+        <div className={styles.contentRow}>
+          <p className={styles.description}>{event.description}</p>
+
+          <div className={styles.statsRow}>
+            {event.stats.map((stat, i) => (
+              <div key={i} className={styles.statCard}>
                 <span className={styles.statNumber}>{stat.number}</span>
                 <span className={styles.statLabel}>{stat.label}</span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        {/* ── Gallery ── */}
+        <section>
+          <p className={styles.galleryLabel}>Gallery</p>
+          <div className={styles.gallery}>
+            {event.gallery.map((src, i) => (
+              <div key={i} className={styles.galleryItem}>
+                <Image
+                  src={src}
+                  alt={`${event.title} — photo ${i + 1}`}
+                  fill
+                  className={styles.galleryImage}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* Gallery */}
-        <section className={styles.gallery}>
-          {event.galleryImages.map((src, idx) => (
-            <div key={idx} className={styles.galleryImageWrapper}>
-              <Image 
-                src={src} 
-                alt={`Gallery ${idx + 1}`} 
-                fill 
-                className={styles.image} 
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-          ))}
-        </section>
       </div>
+
+      <FooterCompact />
     </main>
   );
 }
