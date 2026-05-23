@@ -1,65 +1,60 @@
 /* =========================================================================
-   Mobile-First Contact Page
+   Contact Page — Brutalist Dark Editorial
    ========================================================================= */
 
 .main {
-  min-height: 100vh;
-  background: var(--color-bg);
-  padding-top: 80px; /* mobile: space for hamburger */
+  min-height: 100dvh;
+  background-color: #0A0A0A;
+  padding-top: 120px;
+  color: #FFFFFF;
 }
 
 .container {
-  padding: 48px 24px 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
+  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 /* ── Header ── */
 .header {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s var(--ease-out-expo),
-              transform 0.8s var(--ease-out-expo);
-}
-.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+  margin-bottom: 48px;
 }
 
 .heading {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(52px, 14vw, 89px);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(48px, 12vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
   margin: 0;
+  text-transform: lowercase;
 }
 
-.subtext {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.7;
-  letter-spacing: -0.02em;
-  color: var(--color-muted);
+.accent {
+  color: var(--color-accent);
 }
 
-/* ── Split layout (stacked on mobile) ── */
+.subheading {
+  font-family: var(--font-primary);
+  font-size: clamp(16px, 4vw, 20px);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 16px;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* ── Contact Split Layout ── */
 .split {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 80px;
+  margin-bottom: 48px; /* Tighter gap before footer on mobile */
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 64px;
 }
 
-/* ── Form ── */
+/* ── Brutalist Form ── */
 .formSection {
   width: 100%;
 }
@@ -67,111 +62,112 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 48px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .label {
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: -0.02em;
-  color: var(--color-muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
   text-transform: uppercase;
 }
 
 .input,
 .textarea {
-  font-family: var(--font-primary);
-  font-size: 16px; /* 16px prevents iOS auto-zoom */
-  color: var(--color-text);
+  width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--color-grey-200);
-  padding: 12px 0;
-  outline: none;
-  transition: border-color 0.25s ease;
-  width: 100%;
-  resize: none;
-  -webkit-appearance: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0;
+  padding: 16px 0;
+  font-family: var(--font-primary);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 500;
+  color: #FFFFFF;
+  transition: border-color 0.4s ease, color 0.4s ease;
+  outline: none;
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color: var(--color-grey-300);
+  color: rgba(255, 255, 255, 0.15);
+  font-weight: 400;
 }
 
 .input:focus,
 .textarea:focus {
-  border-bottom-color: var(--color-text);
+  border-bottom-color: var(--color-accent);
 }
 
+/* Fix textarea specific issues */
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Brutalist Submit Button */
 .submitBtn {
-  align-self: flex-start;
-  margin-top: 8px;
-  padding: 14px 32px;
-  background: var(--color-text);
-  color: var(--color-bg);
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: -0.02em;
+  width: 100%;
+  background: var(--color-accent);
   border: none;
-  border-radius: 2px;
+  color: #0A0A0A;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 24px 0;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 
 .submitBtn:hover {
-  background: var(--color-accent);
-  color: var(--color-text);
+  background: #FFFFFF;
+  color: #0A0A0A;
+  transform: translateY(-2px);
 }
 
-.submitBtn:active {
-  transform: scale(0.97);
-}
-
-/* ── Info panel ── */
+/* ── Info Section (Right Column) ── */
 .infoSection {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 64px;
 }
 
 .infoBlock {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .infoLabel {
-  font-family: var(--font-primary);
-  font-weight: 500;
-  font-size: 20px;
-  letter-spacing: -0.06em;
-  color: var(--color-text);
-}
-
-.divider {
-  width: 100%;
-  max-width: 200px;
-  height: 1px;
-  background: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
 }
 
 .email {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 48px);
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.4s ease;
+  word-break: break-all;
 }
 
 .email:hover {
@@ -181,70 +177,70 @@
 .socials {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .socialLink {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 500;
+  color: #FFFFFF;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.4s ease, padding-left 0.4s ease;
 }
 
 .socialLink:hover {
   color: var(--color-accent);
+  padding-left: 12px;
 }
 
 .infoText {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 500;
+  color: #FFFFFF;
   margin: 0;
 }
 
 /* =========================================================================
-   Tablet ≥ 768px
+   Tablet/Desktop
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 0;
+    padding-top: 160px;
+  }
+  
+  .container {
+    padding: 0 48px;
   }
 
-  .container {
-    padding: 80px 40px 120px 100px;
-    gap: 100px;
+  .header {
+    margin-bottom: 80px;
   }
 
   .split {
     flex-direction: row;
     gap: 80px;
-    align-items: flex-start;
+    margin-bottom: 80px; /* Tighter gap before footer on desktop */
   }
 
   .formSection {
-    flex: 1.2;
+    flex: 1;
+    max-width: 700px;
   }
 
   .infoSection {
-    flex: 0.8;
-    padding-top: 20px;
+    flex: 0 0 300px;
+    padding-top: 24px; /* Align slightly down with form */
   }
 }
 
-/* =========================================================================
-   Desktop ≥ 1024px
-   ========================================================================= */
 @media (min-width: 1024px) {
   .container {
-    padding: 120px 80px 160px 200px;
-    max-width: 1440px;
-    margin: 0 auto;
+    padding: 0 80px;
   }
-
+  
   .split {
-    gap: 120px;
+    gap: 160px;
   }
 }

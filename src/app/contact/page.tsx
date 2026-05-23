@@ -1,40 +1,24 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import React from 'react';
 import styles from './page.module.css';
+import FooterCompact from '@/components/Landing/FooterCompact';
 
 export default function ContactPage() {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    const el = headingRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) el.classList.add(styles.visible);
-    }, { threshold: 0.2 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <main className={styles.main}>
       <div className={styles.container}>
 
         {/* ── Heading ── */}
         <header className={styles.header}>
-          <h1 ref={headingRef} className={`${styles.heading} ${styles.reveal}`}>
-            Contact Us
-          </h1>
-          <p className={styles.subtext}>
-            Got a race, event, or story to tell?<br />
-            Let's talk.
-          </p>
+          <h1 className={styles.heading}>let's talk<span className={styles.accent}>.</span></h1>
+          <p className={styles.subheading}>Got a race, event, or story to tell?</p>
         </header>
 
         {/* ── Contact split ── */}
         <div className={styles.split}>
 
-          {/* Left: form */}
+          {/* Left: Brutalist Form */}
           <section className={styles.formSection}>
             <form className={styles.form} onSubmit={e => e.preventDefault()}>
               <div className={styles.field}>
@@ -47,42 +31,33 @@ export default function ContactPage() {
               </div>
               <div className={styles.field}>
                 <label htmlFor="message" className={styles.label}>Message</label>
-                <textarea id="message" rows={5} placeholder="Tell us about your event…" className={styles.textarea} />
+                <textarea id="message" placeholder="Tell us about your event..." className={styles.textarea} />
               </div>
               <button type="submit" className={styles.submitBtn}>
-                Send message →
+                Send message <span>→</span>
               </button>
             </form>
           </section>
 
-          {/* Right: info */}
+          {/* Right: Info */}
           <section className={styles.infoSection}>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Mail us @</span>
-              <div className={styles.divider} />
-              <a href="mailto:hello@veloscope.in" className={styles.email}>
-                hello@veloscope.in
+              <a href="mailto:veloscope@gmail.com" className={styles.email}>
+                veloscope@gmail.com
               </a>
             </div>
 
             <div className={styles.infoBlock}>
-              <span className={styles.infoLabel}>Find us on</span>
-              <div className={styles.divider} />
-              <div className={styles.socials}>
-                <a href="#" className={styles.socialLink} aria-label="Instagram">Instagram</a>
-                <a href="#" className={styles.socialLink} aria-label="Facebook">Facebook</a>
-              </div>
-            </div>
-
-            <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Based in</span>
-              <div className={styles.divider} />
               <p className={styles.infoText}>Chennai, India</p>
             </div>
           </section>
         </div>
 
       </div>
+
+      <FooterCompact />
     </main>
   );
 }
