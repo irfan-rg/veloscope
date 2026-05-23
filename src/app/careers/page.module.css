@@ -1,143 +1,161 @@
 /* =========================================================================
-   Mobile-First Careers Page CSS
+   Careers Page — Dark Brutalist Roster
    ========================================================================= */
 
 .main {
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  padding-top: 100px;
-  padding-bottom: 80px;
+  min-height: 100dvh;
+  background-color: #0A0A0A;
+  padding-top: 120px;
+  color: #FFFFFF;
 }
 
 .container {
-  padding: 40px 24px;
+  padding: 0 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-bottom: 64px;
 }
 
+/* ── Header ── */
 .header {
-  margin-bottom: 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  margin-bottom: 48px;
 }
 
 .heading {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(48px, 12vw, 89px);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(48px, 12vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
   margin: 0;
+  text-transform: lowercase;
 }
 
-.subtext {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--color-muted);
+.accent {
+  color: var(--color-accent);
 }
 
+.subheading {
+  font-family: var(--font-primary);
+  font-size: clamp(16px, 4vw, 20px);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 16px;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
+/* ── Interactive Roster List ── */
 .rolesList {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.roleCard {
+.roleRow {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 32px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background-color: var(--color-bg);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              padding-right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.roleCard:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
+.roleRow:hover {
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .roleInfo {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .roleTitle {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 24px;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
   margin: 0;
+  transition: color 0.4s ease;
+  text-transform: lowercase;
+}
+
+.roleRow:hover .roleTitle {
+  color: var(--color-accent);
 }
 
 .roleMeta {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.metaItem {
+  gap: 12px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--color-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .metaDot {
-  color: var(--color-muted);
-  font-size: 10px;
+  color: var(--color-accent);
 }
 
-.applyBtn {
-  align-self: flex-start;
-  padding: 12px 24px;
-  background-color: var(--color-text);
-  color: var(--color-bg);
-  font-family: var(--font-mono);
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.arrowWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  transform: translateX(-10px);
+  color: #FFFFFF;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.applyBtn:hover {
-  background-color: var(--color-accent);
-  color: var(--color-text);
+.roleRow:hover .arrowWrapper {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--color-accent);
 }
 
 /* =========================================================================
-   Tablet Breakpoint
+   Tablet/Desktop
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 0;
+    padding-top: 160px;
   }
-
+  
   .container {
-    padding: 80px 40px 120px 100px;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 0 48px;
+    margin-bottom: 120px;
   }
 
-  .roleCard {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  .header {
+    margin-bottom: 64px;
   }
-
-  .applyBtn {
-    align-self: center;
+  
+  .roleRow {
+    padding: 40px 0;
+  }
+  
+  .roleRow:hover {
+    padding-left: 48px;
+    padding-right: 48px;
   }
 }
 
-/* =========================================================================
-   Desktop Breakpoint
-   ========================================================================= */
 @media (min-width: 1024px) {
   .container {
-    padding: 120px 80px 160px 200px;
-    max-width: 1200px;
+    padding: 0 80px;
+  }
+  
+  .roleRow {
+    padding: 64px 0;
   }
 }
