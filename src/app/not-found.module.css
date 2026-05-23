@@ -1,0 +1,67 @@
+/* =========================================================================
+   404 Page — Dark Brutalist Layout
+   ========================================================================= */
+
+.main {
+  min-height: 100dvh;
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 600px;
+}
+
+.errorCode {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(80px, 20vw, 200px);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: #FFFFFF;
+  margin: 0;
+  position: relative;
+}
+
+.errorCode::after {
+  content: '.';
+  color: var(--color-accent);
+}
+
+.message {
+  font-family: var(--font-primary);
+  font-size: clamp(16px, 4vw, 24px);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.homeLink {
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0A0A0A;
+  background-color: var(--color-accent);
+  padding: 16px 32px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.homeLink:hover {
+  transform: translateY(-2px);
+  background-color: #d1ff4d;
+}

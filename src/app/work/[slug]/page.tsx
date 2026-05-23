@@ -28,10 +28,11 @@ const EVENTS: Record<string, {
     hero: '/images/figma/figma_672_2830.png',
     gallery: [
       '/images/figma/figma_712_2280.png',
-      '/images/figma/figma_752_3294.png',
+      '/images/figma/figma_712_2280.png',
+      '/images/figma/figma_752_3148.png',
       '/images/figma/figma_712_2283.png',
       '/images/figma/figma_712_2285.png',
-      '/images/story-photo.png'
+      '/images/figma/figma_752_3294.png'
     ]
   },
   'ruggedian-kolhapur': {
@@ -48,8 +49,8 @@ const EVENTS: Record<string, {
     gallery: [
       '/images/figma/figma_672_2828.png',
       '/images/figma/figma_672_2830.png',
-      '/images/figma/figma_674_2921.png',
-      '/images/story-photo.png',
+      '/images/figma/figma_650_2701.png',
+      '/images/figma/figma_650_2703.png',
       '/images/figma/figma_712_2280.png',
     ]
   },
@@ -66,10 +67,10 @@ const EVENTS: Record<string, {
     hero: '/images/figma/figma_712_2280.png',
     gallery: [
       '/images/figma/figma_672_2830.png',
-      '/images/figma/figma_752_3294.png',
-      '/images/story-photo.png',
+      '/images/figma/figma_656_2710.png',
+      '/images/figma/figma_656_2720.png',
       '/images/figma/figma_712_2285.png',
-      '/images/event-bridge.png',
+      '/images/figma/figma_712_2283.png',
     ]
   }
 };
@@ -78,6 +79,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
   const { slug } = await params;
   const event = EVENTS[slug];
 
+  console.log("SLUG IS: ", slug);
   if (!event) {
     notFound();
   }

@@ -1,18 +1,19 @@
 import React from 'react';
 import styles from './page.module.css';
+import FooterCompact from '@/components/Landing/FooterCompact';
 
 export default function LegalPage() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.heading}>Legal</h1>
-          <p className={styles.subtext}>Terms of Service & Privacy Policy</p>
+          <h1 className={styles.heading}>legal<span className={styles.accent}>.</span></h1>
+          <p className={styles.subheading}>Terms of Service & Privacy Policy</p>
         </header>
 
         <section className={styles.content}>
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>1. Terms of Service</h2>
+            <h2 className={styles.sectionTitle}>1. terms of service</h2>
             <p className={styles.text}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
@@ -22,7 +23,7 @@ export default function LegalPage() {
           </div>
 
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>2. Privacy Policy</h2>
+            <h2 className={styles.sectionTitle}>2. privacy policy</h2>
             <p className={styles.text}>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
             </p>
@@ -32,6 +33,8 @@ export default function LegalPage() {
           </div>
         </section>
       </div>
+      
+      <FooterCompact />
     </main>
   );
 }
