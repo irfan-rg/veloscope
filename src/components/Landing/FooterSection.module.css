@@ -11,6 +11,15 @@
   border-top: 3px solid var(--color-accent); /* Accent stripe */
 }
 
+.footerMini {
+  padding-top: 40px;
+}
+
+.footerMini .infoGrid {
+  margin-bottom: 24px;
+  padding-bottom: 32px;
+}
+
 .footerContent {
   display: flex;
   flex-direction: column;
@@ -22,7 +31,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 }
 
 .taglineRow {
@@ -72,27 +81,34 @@
 
 /* --- Info Row --- */
 .infoGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  margin-bottom: 56px;
-  padding-bottom: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 16px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .infoColumn {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
-/* Explore + Legal side-by-side */
-.linksRow {
+/* Connect spans full width on mobile */
+.connectColumn {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
-  width: 100%;
-  max-width: 340px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Explore + Legal side-by-side — remove the linksRow wrapper */
+.linksRow {
+  display: contents; /* Let children participate in parent grid directly */
 }
 
 .columnTitle {

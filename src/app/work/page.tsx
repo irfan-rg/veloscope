@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './page.module.css';
 import EventCard from '@/components/Work/EventCard';
+import FooterCompact from '@/components/Landing/FooterCompact';
 
 // Dummy data based on Figma text nodes
 const EVENTS = [
@@ -20,14 +21,14 @@ const EVENTS = [
   },
   {
     id: 'ruggedian-kolhapur',
-    title: 'Ruggedian kolhapur run',
+    title: 'Ruggedian Kolhapur Run',
     date: 'Dec 15th, 2019',
     image: '/images/event-woman.png',
     stats: { images: '120,000', runners: '2000', photographers: '80' }
   },
   {
     id: 'yogi-run',
-    title: 'Yogi run',
+    title: 'Yogi Run',
     date: 'Mar 10th, 2019',
     image: '/images/portfolio-card.png',
     stats: { images: '45,000', runners: '500', photographers: '20' }
@@ -39,48 +40,25 @@ export default function WorkPage() {
     <main className={styles.main}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.heading}>Our work</h1>
+          <h1 className={styles.heading}>our work<span className={styles.accent}>.</span></h1>
         </header>
 
+        {/* Mobile-First Massive Gallery Grid */}
         <div className={styles.grid}>
-          {/* Desktop Left Column - Labels */}
-          <div className={styles.labelsCol}>
-            {EVENTS.map((event, index) => (
-              <div key={`label-${event.id}`} className={styles.labelWrapper}>
-                <span className={styles.sideLabel}>{event.title}</span>
-              </div>
-            ))}
-          </div>
+          {EVENTS.map((event) => (
+            <div key={event.id} className={styles.cardWrapper}>
+              <EventCard {...event} />
+            </div>
+          ))}
+        </div>
 
-          {/* Center Column - Cards */}
-          <div className={styles.cardsCol}>
-            {EVENTS.map((event) => (
-              <div key={event.id} className={styles.cardWrapper}>
-                {/* Mobile only label */}
-                <span className={styles.mobileLabel}>{event.title}</span>
-                <EventCard {...event} />
-              </div>
-            ))}
-            
-            <div className={styles.scrollMarkers}>
-              <span className={styles.marker}>keep scrolling</span>
-              <span className={styles.marker}>Ik there's a lot</span>
-              <span className={styles.marker}>That's it!</span>
-            </div>
-          </div>
-
-          {/* Desktop Right Column - Additional Images (Hidden on mobile) */}
-          <div className={styles.imagesCol}>
-            <div className={styles.sideImageWrapper}>
-              {/* These would be the large side images from Figma */}
-              <div className={styles.placeholderImage}></div>
-            </div>
-            <div className={styles.sideImageWrapper}>
-              <div className={styles.placeholderImage}></div>
-            </div>
-          </div>
+        {/* Scroll Markers */}
+        <div className={styles.scrollMarkers}>
+          <span className={styles.marker}>that's it!</span>
         </div>
       </div>
+      
+      <FooterCompact />
     </main>
   );
 }

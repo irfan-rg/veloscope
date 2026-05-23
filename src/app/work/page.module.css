@@ -1,186 +1,93 @@
 /* =========================================================================
-   Mobile-First Work Page CSS
+   Work Page — Mobile-First, Dark Editorial Gallery
    ========================================================================= */
 
 .main {
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  padding-top: 100px; /* Space for mobile nav */
-  padding-bottom: 80px;
+  min-height: 100dvh;
+  background-color: #0A0A0A;
+  padding-top: 120px;
+  color: #FFFFFF;
 }
 
 .container {
-  padding: 40px 24px;
+  padding: 0 20px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
+/* ── Header ── */
 .header {
-  margin-bottom: 60px;
+  margin-bottom: 48px;
 }
 
 .heading {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(48px, 12vw, 89px);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(48px, 12vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
   margin: 0;
-  /* Textured fill from Figma */
-  background-image: url('/images/texture-bg.png'); /* Fallback image texture */
-  background-size: cover;
-  background-position: center;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  display: inline-block;
+  text-transform: lowercase;
 }
 
-/* Mobile Grid Layout (Single Column) */
+.accent {
+  color: var(--color-accent);
+}
+
+/* ── Mobile-First Single Column Grid ── */
 .grid {
   display: flex;
   flex-direction: column;
-  gap: 60px;
-}
-
-/* Hidden on mobile */
-.labelsCol,
-.imagesCol {
-  display: none;
-}
-
-/* Cards Column */
-.cardsCol {
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  width: 100%;
+  gap: 32px;
 }
 
 .cardWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  width: 100%;
 }
 
-.mobileLabel {
-  font-family: var(--font-primary);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-}
-
-/* Scroll Markers */
+/* ── Scroll Markers ── */
 .scrollMarkers {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 80px;
   margin-top: 100px;
+  margin-bottom: 80px;
 }
 
 .marker {
   font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
-  letter-spacing: -0.02em;
-  color: var(--color-muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
   text-align: center;
 }
 
 /* =========================================================================
-   Tablet Breakpoint
+   Tablet/Desktop Enhancements
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 0;
+    padding-top: 160px;
   }
   
   .container {
-    padding: 80px 40px 80px 100px; /* Sidebar padding */
+    padding: 0 40px;
   }
 
   .header {
-    margin-bottom: 100px;
-    padding-left: 315px; /* Align with center column */
+    margin-bottom: 80px;
   }
 
-  /* Introduce basic multi-column */
   .grid {
-    flex-direction: row;
-    gap: 40px;
-  }
-
-  .labelsCol {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding-top: 40px;
-    gap: 480px; /* Match card height spacing */
-  }
-
-  .sideLabel {
-    font-family: var(--font-primary);
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: -0.02em;
-    color: var(--color-text);
-  }
-
-  .mobileLabel {
-    display: none;
-  }
-
-  .cardsCol {
-    width: 359px; /* Exact Figma width */
     gap: 80px;
   }
 }
 
-/* =========================================================================
-   Desktop Breakpoint
-   ========================================================================= */
 @media (min-width: 1024px) {
   .container {
-    padding: 120px 80px 120px 200px;
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-
-  .grid {
-    gap: 80px;
-  }
-
-  .labelsCol {
-    width: 250px;
-  }
-
-  .imagesCol {
-    display: flex;
-    flex-direction: column;
-    gap: 200px;
-    flex: 1;
-    padding-top: 120px;
-  }
-
-  .sideImageWrapper {
-    width: 100%;
-    max-width: 400px;
-    aspect-ratio: 4 / 3;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: var(--color-grey-100);
-  }
-
-  .placeholderImage {
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/event-group.png'); /* Dummy texture */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
+    padding: 0 80px;
   }
 }

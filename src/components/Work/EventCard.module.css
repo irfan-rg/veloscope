@@ -1,136 +1,174 @@
+/* =========================================================================
+   EventCard — Edge-to-Edge Cinematic Viewfinder Design
+   ========================================================================= */
+
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: block;
+  position: relative;
   width: 100%;
+  aspect-ratio: 4 / 5; /* Tall cinematic aspect ratio on mobile */
+  background-color: #111;
   text-decoration: none;
   cursor: pointer;
-  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* ── Image ── */
 .imageContainer {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 319 / 452; /* Figma mobile aspect ratio */
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: var(--color-grey-100);
+  height: 100%;
 }
 
 .image {
   object-fit: cover;
-  transition: transform 0.6s var(--ease-out-expo);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s ease;
+  filter: brightness(0.65) grayscale(20%);
 }
 
 .card:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.04);
+  filter: brightness(0.85) grayscale(0%);
 }
 
-/* Hover Overlay */
+/* ── Gradient Overlay ── */
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: var(--color-bg);
-  border: 1px solid #B1B1B1;
-  border-radius: 10px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.6) 70%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
-.card:hover .overlay {
+/* ── Viewfinder Corners ── */
+.corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover .corner {
   opacity: 1;
-  visibility: visible;
 }
 
-.overlayContent {
+.cornerTL {
+  top: 24px;
+  left: 24px;
+  border-top: 1.5px solid #FFF;
+  border-left: 1.5px solid #FFF;
+}
+
+.cornerTR {
+  top: 24px;
+  right: 24px;
+  border-top: 1.5px solid #FFF;
+  border-right: 1.5px solid #FFF;
+}
+
+/* ── Content (Bottom Anchored) ── */
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32px 24px;
+  z-index: 3;
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  transform: translateY(12px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .content {
+  transform: translateY(0);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(28px, 6vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0;
+  text-transform: lowercase;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── Stats Row ── */
+.statsRow {
+  display: flex;
+  align-items: center;
   gap: 24px;
-  width: 100%;
-  padding: 0 40px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover .statsRow {
+  opacity: 1;
 }
 
 .statGroup {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  padding-left: 20px; /* Space for the green dot/bar */
+  gap: 2px;
 }
-
-.statGroup::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 4px;
-  height: 4px;
-  background-color: var(--color-text); /* Black dot */
-}
-
-/* Figma design has lime accents */
-.statGroup:nth-child(1)::before { height: 16px; top: 0; background-color: var(--color-text); width: 1px; }
-.statGroup:nth-child(2)::before { height: 8px; top: 4px; background-color: var(--color-text); width: 1px;}
-.statGroup:nth-child(3)::before { height: 4px; top: 8px; background-color: var(--color-text); width: 1px;}
-
 
 .statNumber {
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(32px, 8vw, 48px);
-  line-height: 1.04;
-  letter-spacing: -0.08em;
-  color: var(--color-accent); /* Lime green numbers */
-  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 .statLabel {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: clamp(16px, 4vw, 20px);
-  line-height: 1.2;
-  letter-spacing: -0.08em;
-  color: var(--color-text); /* Black text */
-  display: block;
-}
-
-/* Details */
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.title {
-  font-family: var(--font-primary);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
-  margin: 0;
-}
-
-.date {
   font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.6;
-  letter-spacing: -0.02em;
-  color: var(--color-muted);
-  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
 }
 
 /* =========================================================================
-   Tablet Breakpoint
+   Tablet / Desktop
    ========================================================================= */
 @media (min-width: 768px) {
   .card {
-    max-width: 359px;
+    aspect-ratio: 16 / 9; /* Wider cinematic ratio on large screens */
   }
+
+  .content {
+    padding: 48px 40px;
+  }
+
+  .cornerTL, .cornerTR {
+    top: 40px;
+  }
+  .cornerTL { left: 40px; }
+  .cornerTR { right: 40px; }
 }
