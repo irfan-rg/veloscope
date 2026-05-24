@@ -190,7 +190,7 @@
   font-weight: 800;
   /* Outlined / stroke style text */
   font-size: clamp(60px, 18vw, 200px);
-  line-height: 0.9;
+  line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 0;
   padding: 0;
@@ -225,8 +225,14 @@
   }
 
   .infoGrid {
-    flex-direction: row;
-    gap: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .connectColumn {
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .bottomBar {

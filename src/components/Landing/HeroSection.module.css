@@ -111,8 +111,8 @@
 /* ─── Top-left label — matches corner inset ─── */
 .topLeft {
   position: absolute;
-  top: 84px;   /* corner top + bracket height */
-  left: 44px;  /* corner left + bracket width + gap */
+  top: 82px;
+  left: 40px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -121,8 +121,8 @@
 /* ─── Top-right shutter readout ─── */
 .topRight {
   position: absolute;
-  top: 84px;
-  right: 44px;
+  top: 82px;
+  right: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -214,23 +214,23 @@
    Desktop
    ========================================================================= */
 @media (min-width: 768px) {
-  .cornerTL, .cornerTR { top: 72px; }
-  .cornerTL, .cornerBL { left: 40px; }
-  .cornerTR, .cornerBR { right: 40px; }
-  .cornerBL, .cornerBR { bottom: 40px; }
+  .cornerTL, .cornerTR { top: 88px; }
+  .cornerTL, .cornerBL { left: 48px; }
+  .cornerTR, .cornerBR { right: 48px; }
+  .cornerBL, .cornerBR { bottom: 48px; }
 
-  .topLeft { top: 80px; left: 60px; }
-  .topRight { top: 80px; right: 60px; }
+  .topLeft { top: 100px; left: 64px; }
+  .topRight { top: 100px; right: 64px; }
 
   .corner { width: 36px; height: 36px; }
 }
 
 @media (min-width: 1024px) {
-  .cornerTL, .cornerTR { top: 80px; }
-  .cornerTL, .cornerBL { left: 56px; }
-  .cornerTR, .cornerBR { right: 56px; }
-  .cornerBL, .cornerBR { bottom: 56px; }
+  .cornerTL, .cornerTR { top: 110px; }
+  .cornerTL, .cornerBL { left: 80px; }
+  .cornerTR, .cornerBR { right: 80px; }
+  .cornerBL, .cornerBR { bottom: 64px; }
 
-  .topLeft { top: 88px; left: 76px; }
-  .topRight { top: 88px; right: 76px; }
+  .topLeft { top: 122px; left: 96px; }
+  .topRight { top: 122px; right: 96px; }
 }

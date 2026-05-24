@@ -6,8 +6,9 @@
   min-height: 100dvh;
   background-color: #0A0A0A;
   padding-top: 80px;
-  padding-bottom: 80px;
   color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -15,6 +16,7 @@
   max-width: 1440px;
   margin: 0 auto;
   margin-bottom: 64px;
+  flex: 1;
 }
 
 /* ── Top Bar ── */
@@ -37,14 +39,31 @@
   color: var(--color-accent);
 }
 
-/* ── Hero Image (Single Full-Bleed) ── */
+/* ── Top Layout (Split on Desktop) ── */
+.topLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mediaCol {
+  width: 100%;
+}
+
+/* ── Hero Image ── */
 .heroWrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: #111;
-  margin-bottom: 24px;
 }
 
 .heroImage {
@@ -63,7 +82,6 @@
   gap: 16px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   padding-bottom: 32px;
-  margin-bottom: 32px;
 }
 
 .title {
@@ -98,7 +116,6 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin-bottom: 64px;
 }
 
 .description {
@@ -182,7 +199,7 @@
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 160px;
+    padding-top: 120px;
   }
 
   .container {
@@ -191,22 +208,6 @@
 
   .backLink {
     margin-bottom: 48px;
-  }
-
-  .heroWrapper {
-    margin-bottom: 64px;
-  }
-
-  .header {
-    margin-bottom: 80px;
-  }
-
-  .contentRow {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 80px;
-    margin-bottom: 120px;
   }
   
   .statsRow {
@@ -230,6 +231,28 @@
   .container {
     padding: 0 80px;
     margin-bottom: 160px;
+  }
+
+  /* ── Split Layout ── */
+  .topLayout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    margin-bottom: 120px;
+    align-items: stretch;
+  }
+
+  .textCol {
+    order: 1;
+  }
+
+  .mediaCol {
+    order: 2;
+  }
+
+  .heroWrapper {
+    height: 100%;
+    aspect-ratio: auto;
   }
 
   .statsRow {

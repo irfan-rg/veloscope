@@ -92,39 +92,46 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           ← back to work
         </Link>
 
-        {/* ── Hero ── */}
-        <div className={styles.heroWrapper}>
-          <Image
-            src={event.hero}
-            alt={event.title}
-            fill
-            className={styles.heroImage}
-            sizes="100vw"
-            priority
-          />
-        </div>
-
-        {/* ── Header ── */}
-        <header className={styles.header}>
-          <h1 className={styles.title}>{event.title}</h1>
-          <div className={styles.metaBar}>
-            <span>{event.date}</span>
-            <span className={styles.metaDot}>•</span>
-            <span>{event.location}</span>
+        <div className={styles.topLayout}>
+          {/* ── Media Column (Hero) ── */}
+          <div className={styles.mediaCol}>
+            <div className={styles.heroWrapper}>
+              <Image
+                src={event.hero}
+                alt={event.title}
+                fill
+                className={styles.heroImage}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+            </div>
           </div>
-        </header>
 
-        {/* ── Description + Stats ── */}
-        <div className={styles.contentRow}>
-          <p className={styles.description}>{event.description}</p>
-
-          <div className={styles.statsRow}>
-            {event.stats.map((stat, i) => (
-              <div key={i} className={styles.statCard}>
-                <span className={styles.statNumber}>{stat.number}</span>
-                <span className={styles.statLabel}>{stat.label}</span>
+          {/* ── Text Column ── */}
+          <div className={styles.textCol}>
+            {/* ── Header ── */}
+            <header className={styles.header}>
+              <h1 className={styles.title}>{event.title}</h1>
+              <div className={styles.metaBar}>
+                <span>{event.date}</span>
+                <span className={styles.metaDot}>•</span>
+                <span>{event.location}</span>
               </div>
-            ))}
+            </header>
+
+            {/* ── Description + Stats ── */}
+            <div className={styles.contentRow}>
+              <p className={styles.description}>{event.description}</p>
+
+              <div className={styles.statsRow}>
+                {event.stats.map((stat, i) => (
+                  <div key={i} className={styles.statCard}>
+                    <span className={styles.statNumber}>{stat.number}</span>
+                    <span className={styles.statLabel}>{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

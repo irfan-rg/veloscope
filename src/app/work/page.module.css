@@ -79,11 +79,11 @@
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 160px;
+    padding-top: 120px;
   }
   
   .container {
-    padding: 0 40px;
+    padding: 0 48px;
   }
 
   .header {
@@ -91,12 +91,18 @@
   }
 
   .grid {
-    gap: 80px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
     padding: 0 80px;
+  }
+
+  .grid {
+    gap: 80px;
   }
 }

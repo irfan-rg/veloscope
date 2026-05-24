@@ -149,11 +149,11 @@
 }
 
 /* =========================================================================
-   Tablet/Desktop (The Asymmetric Layout)
+   Tablet/Desktop Layout (Symmetric Grid)
    ========================================================================= */
 @media (min-width: 768px) {
   .main {
-    padding-top: 160px;
+    padding-top: 120px;
   }
   
   .container {
@@ -165,48 +165,45 @@
   }
 
   .editorialGrid {
-    gap: 160px; /* Massive breathing room */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-top: 80px;
+    margin-bottom: 160px;
   }
 
-  /* Member 1: Massive Landscape (Center) */
-  .memberBlock:nth-child(1) {
-    align-items: center;
-    text-align: center;
-  }
-  .memberBlock:nth-child(1) .imageWrapper {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-  }
-  .memberBlock:nth-child(1) .description {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Member 2: Portrait (Pushed Right) */
-  .memberBlock:nth-child(2) {
-    align-items: flex-end;
-    text-align: right;
-    align-self: flex-end; /* Push block to right of flex container */
-    width: 60%;
-  }
-  .memberBlock:nth-child(2) .imageWrapper {
-    aspect-ratio: 3 / 4;
-  }
-
-  /* Member 3: Portrait (Pushed Left) */
+  /* Standardize all blocks */
+  .memberBlock,
+  .memberBlock:nth-child(1),
+  .memberBlock:nth-child(2),
   .memberBlock:nth-child(3) {
+    max-width: 100%;
+    margin: 0;
     align-items: flex-start;
     text-align: left;
-    align-self: flex-start; /* Push block to left */
-    width: 50%;
+    align-self: stretch;
   }
+
+  /* Uniform premium portrait ratio */
+  .memberBlock .imageWrapper,
+  .memberBlock:nth-child(1) .imageWrapper,
+  .memberBlock:nth-child(2) .imageWrapper,
   .memberBlock:nth-child(3) .imageWrapper {
     aspect-ratio: 4 / 5;
+    width: 100%;
+  }
+
+  .memberBlock .description {
+    margin: 8px 0 0 0;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
     padding: 0 80px;
+  }
+  
+  .editorialGrid {
+    gap: 80px;
   }
 }

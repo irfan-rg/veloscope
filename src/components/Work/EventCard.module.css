@@ -159,7 +159,7 @@
    ========================================================================= */
 @media (min-width: 768px) {
   .card {
-    aspect-ratio: 16 / 9; /* Wider cinematic ratio on large screens */
+    aspect-ratio: 1 / 1; /* Balanced square ratio */
   }
 
   .content {
