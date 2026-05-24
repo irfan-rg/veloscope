@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>veloscope - more than just sports</h1>
+  <br />
+  <img src="./public/images/veloscope-logo.png" width="180" alt="Veloscope Logo" />
+  <br />
+  <br />
+</div>
 
-## Getting Started
+A high-contrast, brutalist editorial platform built for an endurance sports photography agency. This project is my submission for the **Veloscope UI Engineering Challenge**.
 
-First, run the development server:
+## Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Live URL:** [https://veloscope.vercel.app](https://veloscope.vercel.app)
+- **Design Reference:** [Figma Design Link](https://www.figma.com/design/5GP3njgupb7jsiCXnN4Vpy/Flow--Copy-?node-id=650-1970&t=BWE0WT5Q5O2ZHn8T-0)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack & Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+While I typically rely on utility-first frameworks like Tailwind CSS, I chose a different path for this assessment to explicitly demonstrate my grasp on fundamental styling and modular architecture.
 
-## Learn More
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Pure CSS Modules (`.module.css`) + CSS Variables
+- **Layout:** CSS Grid & Flexbox (no third-party grid systems)
+- **Typography:** Fluid sizing using `clamp()` calculations
 
-To learn more about Next.js, take a look at the following resources:
+## Design Decisions & Deviations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The original brief called for a strict mobile-first implementation. I honored that by ensuring the mobile experience is mathematically sound and buttery smooth. However, I took the creative liberty to expand the design system and build out a **premium, fully responsive desktop experience**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. The Magazine Editorial Aesthetic
+I transitioned the desktop layout into a cinematic, brutalist magazine format:
+- **Asymmetric Split Layouts:** On internal pages like the Event Detail view, the massive hero images are constrained to a `4/5` portrait ratio and docked beside a sticky text column, preventing the "screen-spanning banner" effect common in naive desktop ports.
+- **Symmetric Grid Rosters:** The Team page utilizes a strict 3-column CSS Grid to present the roster professionally, rather than relying on chaotic flex-wrap logic.
 
-## Deploy on Vercel
+### 2. Pure CSS Modules Over Tailwind
+Building this via standard CSS Modules allowed me to:
+- Establish a highly structured, scalable design token system using native CSS variables (`var(--font-primary)`, `var(--color-accent)`).
+- Implement precise `clamp()` typography that smoothly scales between a 390px mobile viewport and a 1440px desktop monitor without relying on jagged media query breakpoints.
+- Avoid utility class clutter in the JSX, keeping the React components incredibly semantic and readable.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Micro-Interactions & Polish
+To breathe life into the UI, I implemented several subtle enhancements:
+- A custom, inverted-blend-mode cursor that interacts naturally with the dark brutalist backgrounds.
+- A smooth scroll-progress tracker pinned to the navigation bar.
+- Aperture-inspired shutter animations on the mobile hamburger menu.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Running Locally
+
+To run this project on your local machine:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/veloscope.git
+   cd veloscope
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **View in browser:**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+*Thank you for reviewing my submission. I look forward to discussing the code!*
