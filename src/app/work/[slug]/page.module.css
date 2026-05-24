@@ -5,7 +5,7 @@
 .main {
   min-height: 100dvh;
   background-color: #0A0A0A;
-  padding-top: 120px;
+  padding-top: 80px;
   padding-bottom: 80px;
   color: #FFFFFF;
 }
@@ -30,7 +30,7 @@
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
   margin-top: 8px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .backLink:hover {
@@ -44,7 +44,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background-color: #111;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .heroImage {
@@ -62,8 +62,8 @@
   flex-direction: column;
   gap: 16px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 48px;
-  margin-bottom: 48px;
+  padding-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .title {
@@ -97,8 +97,8 @@
 .contentRow {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  margin-bottom: 80px;
+  gap: 40px;
+  margin-bottom: 64px;
 }
 
 .description {

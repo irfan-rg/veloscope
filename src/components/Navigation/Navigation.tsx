@@ -103,7 +103,7 @@ export default function Navigation() {
             className={styles.mobileLogoImg}
             priority
           />
-          <span className={styles.mobileLogoText}>Veloscope</span>
+          <span className={styles.mobileLogoText}>veloscope</span>
         </Link>
 
         <button

@@ -70,8 +70,8 @@
 
 /* Aperture shutter icon */
 .shutterIcon {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   transition: transform 0.5s var(--ease-out-expo), color 0.3s ease;
   color: #FFFFFF;
   display: block;
